@@ -22,9 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="Initial TeleOp">
+    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="Initial Autonomous">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TeleOP/Tel_wobble.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeleOP/Tel_wobble.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,19 +49,20 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/TeleOP" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Autonomous" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\athit.DESKTOP-KCDD5D6.000\StudioProjects\CB\Autonomous" />
       <recent name="C:\Users\barat\StudioProjects\CB\TeleOP" />
       <recent name="C:\Users\Joel\StudioProjects\CB" />
       <recent name="C:\Users\Joel\StudioProjects\CB\TestDirectory" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -111,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609603016144</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Initial Autonomous">
+      <created>1609606142586</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1609606142586</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -130,16 +137,22 @@
     <MESSAGE value="Testing creating new file" />
     <MESSAGE value="Cleaning up files" />
     <MESSAGE value="Initial TeleOp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial TeleOp" />
+    <MESSAGE value="Initial Autonomous" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Autonomous" />
   </component>
   <component name="WindowStateProjectService">
     <state x="696" y="17" key="#Project_Structure" timestamp="1608998139612">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="696" y="17" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1608998139612" />
-    <state x="759" y="356" key="Vcs.Push.Dialog.v2" timestamp="1609084111089">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="380" y="142" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609606024016">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
+    <state x="380" y="142" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1609606024016" />
+    <state x="466" y="146" key="Vcs.Push.Dialog.v2" timestamp="1609606160369">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="466" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1609606160369" />
     <state x="759" y="356" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609084111089" />
     <state x="831" y="537" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609085604751">
       <screen x="0" y="0" width="1920" height="1040" />
