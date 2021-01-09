@@ -22,17 +22,21 @@ import android.view.View;
 public class HardwarePushbot {
 
     private LinearOpMode myOpMode;
-    public DcMotor  frontLeftWheel   = null;
-    public DcMotor  frontRightWheel  = null;
-    public DcMotor  backLeftWheel   = null;
-    public DcMotor  backRightWheel  = null;
-    public Servo FoundationMoverRight = null;
-    public CRServo IntakeServoR = null;
-    public Servo FoundationMoverLeft = null;
-    public CRServo IntakeServoL = null;
-    public DcMotor XRailMotor = null;
-    public Servo PivotServo = null;
-    public Servo capstoneServo = null;
+    public DcMotor frontLeft = null;
+    public DcMotor frontRight = null;
+    public DcMotor backRight = null;
+    public DcMotor backLeft = null;
+    public DcMotor intakeMotor = null;
+    public DcMotor wobbleMotor = null;
+    public Servo wobbleServo = null;
+    //public DcMotor shooterMotor = null;
+    //public Servo FoundationMoverRight = null;
+    //public CRServo IntakeServoR = null;
+    //public Servo FoundationMoverLeft = null;
+    //public CRServo IntakeServoL = null;
+    //public DcMotor XRailMotor = null;
+    //public Servo PivotServo = null;
+    //public Servo capstoneServo = null;
     private double  driveAxial      = 0 ;   // Positive is forward
     private double  driveLateral    = 0 ;   // Positive is right
     private double  driveYaw        = 0 ;   // Positive is CCW
@@ -56,26 +60,30 @@ public class HardwarePushbot {
         //hardwareMap = ahwMap;
         hardwareMap = ahwMap;
         // Define and Initialize Motors
-        frontLeftWheel  = hardwareMap.get(DcMotor.class, "frontLeftWheel");
-        frontRightWheel = hardwareMap.get(DcMotor.class, "frontRightWheel");
-        backLeftWheel   = hardwareMap.get(DcMotor.class, "backLeftWheel");
-        backRightWheel  = hardwareMap.get(DcMotor.class, "backRightWheel");
-        FoundationMoverLeft = hardwareMap.get(Servo.class, "FoundationMoverLeft");
-        FoundationMoverRight = hardwareMap.get(Servo.class, "FoundationMoverRight");
-        IntakeServoL = hardwareMap.get(CRServo.class, "IntakeServoL");
-        IntakeServoR = hardwareMap.get(CRServo.class, "IntakeServoR");
-        XRailMotor = hardwareMap.get(DcMotor.class, "xRailMotor");
-        PivotServo = hardwareMap.get(Servo.class, "pivotServo");
-        capstoneServo = hardwareMap.get(Servo.class, "capstoneServo");
+        frontLeft  = hardwareMap.get(DcMotor.class, "frontLeft");
+        frontRight = hardwareMap.get(DcMotor.class, "frontRight");
+        backLeft  = hardwareMap.get(DcMotor.class, "backLeft");
+        backRight = hardwareMap.get(DcMotor.class, "backRight");
+        intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
+        wobbleMotor = hardwareMap.get(DcMotor.class, "wobbleMotor");
+        wobbleServo = hardwareMap.get(Servo.class, "wobbleServo");
+        //shooterMotor = hardwareMap.get(DcMotor.class, "shooterMotor");
+        //FoundationMoverLeft = hardwareMap.get(Servo.class, "FoundationMoverLeft");
+        //FoundationMoverRight = hardwareMap.get(Servo.class, "FoundationMoverRight");
+        //IntakeServoL = hardwareMap.get(CRServo.class, "IntakeServoL");
+        //IntakeServoR = hardwareMap.get(CRServo.class, "IntakeServoR");
+        //XRailMotor = hardwareMap.get(DcMotor.class, "xRailMotor");
+        //PivotServo = hardwareMap.get(Servo.class, "pivotServo");
+        //capstoneServo = hardwareMap.get(Servo.class, "capstoneServo");
         //hang            = hardwareMap.get(DcMotor.class, "hang");
         //extend          = hardwareMap.get(DcMotor.class, "extend");
         //push            = hardwareMap.get(Servo.class, "markerPush");
         //park            = hardwareMap.get(Servo.class, "craterPark");
 
-        frontLeftWheel.setDirection(DcMotor.Direction.FORWARD);
-        frontRightWheel.setDirection(DcMotor.Direction.REVERSE);
-        backLeftWheel.setDirection(DcMotor.Direction.FORWARD);
-        backRightWheel.setDirection(DcMotor.Direction.REVERSE);
+        frontLeft.setDirection(DcMotor.Direction.FORWARD);
+        frontRight.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.FORWARD);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
 //        hang.setDirection(DcMotor.Direction.FORWARD);
 //        extend.setDirection(DcMotor.Direction.FORWARD);
 
@@ -91,17 +99,17 @@ public class HardwarePushbot {
     }
 
     public void changeMode(DcMotor.RunMode x){
-        frontLeftWheel.setMode(x);
-        backLeftWheel.setMode(x);
-        frontRightWheel.setMode(x);
-        backRightWheel.setMode(x);
+        frontLeft.setMode(x);
+        backLeft.setMode(x);
+        frontRight.setMode(x);
+        backRight.setMode(x);
     }
 
     public void changeSpeed(double x){
-        frontLeftWheel.setPower(x);
-        frontRightWheel.setPower(x);
-        backRightWheel.setPower(x);
-        backLeftWheel.setPower(x);
+        frontLeft.setPower(x);
+        frontRight.setPower(x);
+        backRight.setPower(x);
+        backLeft.setPower(x);
     }
 
     public void sleep(int i) {
@@ -126,10 +134,10 @@ public class HardwarePushbot {
         }
 
         // Set drive motor power levels.
-        frontLeftWheel.setPower(frontLeftDrivePower);
-        backLeftWheel.setPower(backLeftDrivePower);
-        frontRightWheel.setPower(frontRightDrivePower);
-        backRightWheel.setPower(backRightDrivePower);
+        frontLeft.setPower(frontLeftDrivePower);
+        backLeft.setPower(backLeftDrivePower);
+        frontRight.setPower(frontRightDrivePower);
+        backRight.setPower(backRightDrivePower);
 
         // Display Telemetry
         myOpMode.telemetry.addData("Axes  ", "A[%+5.2f], L[%+5.2f], Y[%+5.2f]", driveAxial, driveLateral, driveYaw);
