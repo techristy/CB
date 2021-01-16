@@ -22,7 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="Autonmous UPDATES 1/09/21 - 2:00 PM">
+    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="First Autonmous Program">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,14 +55,14 @@
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\athit.DESKTOP-KCDD5D6.000\StudioProjects\CB\Autonomous" />
       <recent name="C:\Users\barat\StudioProjects\CB\TeleOP" />
       <recent name="C:\Users\Joel\StudioProjects\CB" />
       <recent name="C:\Users\Joel\StudioProjects\CB\TestDirectory" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -139,14 +139,7 @@
       <option name="project" value="LOCAL" />
       <updated>1609611006689</updated>
     </task>
-    <task id="LOCAL-00010" summary="Autonmous UPDATES 1/09/21 - 2:00 PM">
-      <created>1610218494987</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1610218494987</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,8 +162,7 @@
     <MESSAGE value="PID CONTROLLER" />
     <MESSAGE value="Logistic FUNCTION" />
     <MESSAGE value="First Autonmous Program" />
-    <MESSAGE value="Autonmous UPDATES 1/09/21 - 2:00 PM" />
-    <option name="LAST_COMMIT_MESSAGE" value="Autonmous UPDATES 1/09/21 - 2:00 PM" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Autonmous Program" />
   </component>
   <component name="WindowStateProjectService">
     <state x="696" y="17" key="#Project_Structure" timestamp="1608998139612">
@@ -185,15 +177,19 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1610206698734" />
-    <state x="466" y="146" key="Vcs.Push.Dialog.v2" timestamp="1610218503500">
+    <state x="121" y="50" key="MergeDialog" timestamp="1610822432134">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="466" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1610218503500" />
+    <state x="121" y="50" key="MergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1610822432134" />
+    <state x="466" y="146" key="Vcs.Push.Dialog.v2" timestamp="1609611021826">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="466" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1609611021826" />
     <state x="759" y="356" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609084111089" />
-    <state x="554" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609610949102">
+    <state x="554" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610822425453">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="554" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1609610949102" />
+    <state x="554" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1610822425453" />
     <state x="831" y="537" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609085604751" />
   </component>
 </project>
