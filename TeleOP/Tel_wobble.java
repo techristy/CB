@@ -42,6 +42,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.vuforia.CameraDevice;
+
+
 /**
  * This file contains an minimal example of a Linear "OpMode". An OpMode is a 'program' that runs in either
  * the autonomous or the teleop period of an FTC match. The names of OpModes appear on the menu
@@ -54,7 +56,6 @@ import com.vuforia.CameraDevice;
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
-
 
 @TeleOp(name="Tel wobble", group="Linear Opmode")
 //@Disabled
@@ -78,6 +79,7 @@ public class Tel_wobble extends LinearOpMode {
     private DcMotor backLeft = null;
     private DcMotor liftMotor = null;
     private DcMotor  intake = null;
+    //private DcMotor shooter = null;
     /*private DcMotor xRail = null;
     private Servo Pivot = null;
 
@@ -131,8 +133,9 @@ public class Tel_wobble extends LinearOpMode {
         frontRight = hardwareMap.get(DcMotor.class, "frontRight");
         backLeft  = hardwareMap.get(DcMotor.class, "backLeft");
         backRight = hardwareMap.get(DcMotor.class, "backRight");
-        liftMotor = hardwareMap.get(DcMotor.class, "liftMotor");
-        intake = hardwareMap.get(DcMotor.class,"intake");
+        liftMotor = hardwareMap.get(DcMotor.class, "wobbleMotor");
+        intake = hardwareMap.get(DcMotor.class,"intakeMotor");
+        //shooter = hardwareMap.get(DcMotor.class,"shooter");
 
 
         //xRail = hardwareMap.get(DcMotor.class, "xRailMotor");
@@ -142,7 +145,7 @@ public class Tel_wobble extends LinearOpMode {
         //capstoneServo = hardwareMap.get(Servo.class, "capstoneServo");
 
         //contServo_left = hardwareMap.get(CRServo.class, "IntakeServoL");
-        gripServo = hardwareMap.get(Servo.class, "gripServo");
+        gripServo = hardwareMap.get(Servo.class, "wobbleServo");
         //leftHolder = hardwareMap.get(Servo.c0lass, "leftHolder");
         //rightHolder = hardwareMap.get(Servo.class, "rightHolder");
 
@@ -172,6 +175,10 @@ public class Tel_wobble extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
+            if(gamepad2.left_bumper){
+                //shooter.setPower(1) ;
+            }
+            //else{shooter.setPower(0);}
             intake.setPower(gamepad2.left_stick_x);
             // Setup a variable for each drive wheel to save power level for telemetry
             //double leftPower;
@@ -386,6 +393,7 @@ public class Tel_wobble extends LinearOpMode {
             else if(gamepad2.b){
                 gripServo.setPosition(0.9);
             }
+
 
             liftMotor.setPower((0.6 * gamepad2.right_stick_y) - gamepad1.left_trigger + gamepad2.right_trigger - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad2.dpad_up ? 1 : 0)) + (0.3 * (gamepad2.dpad_down ? 1 : 0)));

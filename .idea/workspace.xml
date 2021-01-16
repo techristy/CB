@@ -22,8 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="First Autonmous Program">
+    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="New updates">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeleOP/Tel_wobble.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeleOP/Tel_wobble.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +50,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/My Documents" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TeleOP" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -59,7 +60,6 @@
       <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\athit.DESKTOP-KCDD5D6.000\StudioProjects\CB\Autonomous" />
       <recent name="C:\Users\barat\StudioProjects\CB\TeleOP" />
       <recent name="C:\Users\Joel\StudioProjects\CB" />
       <recent name="C:\Users\Joel\StudioProjects\CB\TestDirectory" />
@@ -111,35 +111,21 @@
       <option name="project" value="LOCAL" />
       <updated>1609603016144</updated>
     </task>
-    <task id="LOCAL-00006" summary="Initial Autonomous">
-      <created>1609606142586</created>
+    <task id="LOCAL-00006" summary="New updates">
+      <created>1609603791101</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1609606142586</updated>
+      <updated>1609603791101</updated>
     </task>
-    <task id="LOCAL-00007" summary="PID CONTROLLER">
-      <created>1609607628930</created>
+    <task id="LOCAL-00007" summary="New updates">
+      <created>1609604040553</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1609607628930</updated>
+      <updated>1609604040553</updated>
     </task>
-    <task id="LOCAL-00008" summary="Logistic FUNCTION">
-      <created>1609607869931</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1609607869931</updated>
-    </task>
-    <task id="LOCAL-00009" summary="First Autonmous Program">
-      <created>1609611006689</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1609611006689</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -158,34 +144,31 @@
     <MESSAGE value="Testing creating new file" />
     <MESSAGE value="Cleaning up files" />
     <MESSAGE value="Initial TeleOp" />
-    <MESSAGE value="Initial Autonomous" />
-    <MESSAGE value="PID CONTROLLER" />
-    <MESSAGE value="Logistic FUNCTION" />
-    <MESSAGE value="First Autonmous Program" />
-    <option name="LAST_COMMIT_MESSAGE" value="First Autonmous Program" />
+    <MESSAGE value="New updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="New updates" />
   </component>
   <component name="WindowStateProjectService">
     <state x="696" y="17" key="#Project_Structure" timestamp="1608998139612">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="696" y="17" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1608998139612" />
-    <state x="380" y="142" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609606024016">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1610291467744">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="380" y="142" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1609606024016" />
-    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1610206698734">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610291467744" />
+    <state x="147" y="65" key="MergeDialog" timestamp="1610291428164">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1610206698734" />
-    <state x="466" y="146" key="Vcs.Push.Dialog.v2" timestamp="1609611021826">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1610291428164" />
+    <state x="607" y="265" key="Vcs.Push.Dialog.v2" timestamp="1610814227279">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="466" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1609611021826" />
+    <state x="607" y="265" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1610814227279" />
     <state x="759" y="356" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609084111089" />
-    <state x="554" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1609610949102">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="665" y="425" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610816933567">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="554" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1609610949102" />
+    <state x="665" y="425" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1610816933567" />
     <state x="831" y="537" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609085604751" />
   </component>
 </project>
