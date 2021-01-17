@@ -166,20 +166,45 @@ public class RightRed extends LinearOpMode
         waitForStart();
 
         //encoderDrive(30, "drive");
-        //Thread.sleep(1000);
+        Thread.sleep(1000);
         int[] values = {valQUAD,valSingle,valZero};
         //webcam.closeCameraDevice();
         if(values[0]==0){
             teleUpdate("QUAD","");
             navigation("c");
+            encoderDrive(5,0.5,"strafe");
+            encoderDrive(-100,0.9,"drive");
+            halfTurn("counterclockwise");
+            halfTurn("counterclockwise");
+            robot.wobbleMotor.setPower(4000);
+            robot.wobbleMotor.setPower(0);
+            robot.wobbleServo.setPosition(0.1);
+            encoderDrive(50,0.9,"drive");
+
         }
         else if(values[1]==0){
             teleUpdate("SINGLE","");
             navigation("b");
+            encoderDrive(-75,0.5,"drive");
+            halfTurn("counterclockwise");
+            robot.wobbleMotor.setPower(4000);
+            robot.wobbleMotor.setPower(0);
+            robot.wobbleServo.setPosition(0.1);
+            halfTurn("clockwise");
+            encoderDrive(25,0.9,"drive");
         }
         else{
             teleUpdate("ZERO","");
-            navigation("a");
+//            navigation("a");
+            encoderDrive(5,0.5,"strafe");
+         /*   encoderDrive(-60,0.9,"drive");
+            halfTurn("counterclockwise");
+            halfTurn("counterclockwise");
+            robot.wobbleMotor.setPower(4000);
+            robot.wobbleMotor.setPower(0);
+            robot.wobbleServo.setPosition(0.1);
+            encoderDrive(10,0.9,"drive");*/
+//get ready to shoot
         }
         //drive to the blocks and start vuforia
     }
