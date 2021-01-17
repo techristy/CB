@@ -197,13 +197,13 @@ public class RightRed extends LinearOpMode
             teleUpdate("ZERO","");
 //            navigation("a");
             encoderDrive(5,0.5,"strafe");
-            encoderDrive(-60,0.9,"drive");
+         /*   encoderDrive(-60,0.9,"drive");
             halfTurn("counterclockwise");
             halfTurn("counterclockwise");
             robot.wobbleMotor.setPower(4000);
             robot.wobbleMotor.setPower(0);
             robot.wobbleServo.setPosition(0.1);
-            encoderDrive(10,0.9,"drive");
+            encoderDrive(10,0.9,"drive");*/
 //get ready to shoot
         }
         //drive to the blocks and start vuforia
