@@ -179,6 +179,7 @@ public class RightRed extends LinearOpMode
             robot.wobbleMotor.setPower(4000);
             robot.wobbleMotor.setPower(0);
             robot.wobbleServo.setPosition(0.1);
+            encoderDrive(50,0.9,"drive");
 
         }
         else if(values[1]==0){
@@ -189,6 +190,8 @@ public class RightRed extends LinearOpMode
             robot.wobbleMotor.setPower(4000);
             robot.wobbleMotor.setPower(0);
             robot.wobbleServo.setPosition(0.1);
+            halfTurn("clockwise");
+            encoderDrive(25,0.9,"drive");
         }
         else{
             teleUpdate("ZERO","");
