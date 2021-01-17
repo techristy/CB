@@ -200,7 +200,8 @@ public class RightRed extends LinearOpMode
             robot.wobbleMotor.setPower(4000);
             robot.wobbleMotor.setPower(0);
             robot.wobbleServo.setPosition(0.1);
-
+            encoderDrive(10,0.9,"drive");
+//get ready to shoot
         }
         //drive to the blocks and start vuforia
     }
