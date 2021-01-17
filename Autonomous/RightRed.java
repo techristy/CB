@@ -179,7 +179,9 @@ public class RightRed extends LinearOpMode
         }
         else{
             teleUpdate("ZERO","");
-            navigation("a");
+//            navigation("a");
+            encoderDrive(1,0.5,"strafe");
+            encoderDrive(7,0.9,"drive");
         }
         //drive to the blocks and start vuforia
     }
