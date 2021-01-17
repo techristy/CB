@@ -166,7 +166,7 @@ public class RightRed extends LinearOpMode
         waitForStart();
 
         //encoderDrive(30, "drive");
-        //Thread.sleep(1000);
+        Thread.sleep(1000);
         int[] values = {valQUAD,valSingle,valZero};
         //webcam.closeCameraDevice();
         if(values[0]==0){
