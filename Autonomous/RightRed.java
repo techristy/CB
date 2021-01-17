@@ -176,6 +176,11 @@ public class RightRed extends LinearOpMode
         else if(values[1]==0){
             teleUpdate("SINGLE","");
             navigation("b");
+            encoderDrive(-75,0.5,"drive");
+            halfTurn("counterclockwise");
+            robot.wobbleMotor.setPower(4000);
+            robot.wobbleMotor.setPower(0);
+            robot.wobbleServo.setPosition(0.1);
         }
         else{
             teleUpdate("ZERO","");
