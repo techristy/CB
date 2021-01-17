@@ -180,14 +180,9 @@ public class RightRed extends LinearOpMode
         else{
             teleUpdate("ZERO","");
 //            navigation("a");
-            encoderDrive(5,0.5,"strafe");
+            encoderDrive(1,0.5,"strafe");
             encoderDrive(-30,0.9,"drive");
-            halfTurn("counterclockwise");
-            halfTurn("counterclockwise");
-            robot.wobbleMotor.setPower(4000);
-            robot.wobbleMotor.setPower(0);
-            robot.wobbleServo.setPosition(0.1);
-
+//rishith's comment
 
         }
         //drive to the blocks and start vuforia
@@ -217,7 +212,6 @@ public class RightRed extends LinearOpMode
     }
 
     public void navigation(String type) throws InterruptedException{
-
 
         if(type.equals("a")) {
             encoderDrive(1,0.5,"strafe");
