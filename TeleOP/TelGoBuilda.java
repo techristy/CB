@@ -154,7 +154,7 @@ public class TelGoBuilda extends LinearOpMode {
         frontRight = hardwareMap.get(DcMotor.class, "frontRight");
         backLeft  = hardwareMap.get(DcMotor.class, "backLeft");
         backRight = hardwareMap.get(DcMotor.class, "backRight");
-        rampServo = hardwareMap.get(Servo.class,"rampServo");
+        //rampServo = hardwareMap.get(Servo.class,"rampServo");
         shooter = hardwareMap.get(DcMotor.class,"shooter");
         intakeMotor = hardwareMap.get(DcMotor.class,"intakeMotor");
 
@@ -242,6 +242,10 @@ public class TelGoBuilda extends LinearOpMode {
             // Intake Movement
             intakeMotor.setPower(-400000000);
 
+
+            //Shooter Movement
+            shooter.setPower(400000000);
+
             /** Foundation Moving */
 
            /* if(gamepad1.x == true) {
@@ -275,7 +279,7 @@ public class TelGoBuilda extends LinearOpMode {
             }
 
             // moving ramp servo up and down
-
+            /*
             if(gamepad2.right_bumper){
                 rampServo.setPosition(0.90);
 
@@ -284,6 +288,7 @@ public class TelGoBuilda extends LinearOpMode {
                 rampServo.setPosition(-0.90);
 
             }
+            */
 
             /** X-Rails Slide and Pivot*/
 
