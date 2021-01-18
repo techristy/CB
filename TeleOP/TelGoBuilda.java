@@ -1,4 +1,6 @@
-package org.firstinspires.ftc.teamcode;/* Copyright (c) 2017 FIRST. All rights reserved.
+package org.firstinspires.ftc.teamcode;
+
+/* Copyright (c) 2017 FIRST. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted (subject to the limitations in the disclaimer below) provided that
@@ -65,17 +67,18 @@ import com.vuforia.CameraDevice;
 @TeleOp(name="TeleGoBuilda", group="Linear Opmode")
 //@Disabled
 public class TelGoBuilda extends LinearOpMode {
-    public static int convertBoolean(boolean x){
-        if(x){
+    public static int convertBoolean(boolean x) {
+        if (x) {
             return 1;
-        }
-        else return 0;
+        } else return 0;
     }
     // Declare OpMode members.
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /** (Continuous/Regular) Servo and Motor Usage */
+    /**
+     * (Continuous/Regular) Servo and Motor Usage
+     */
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -84,9 +87,11 @@ public class TelGoBuilda extends LinearOpMode {
     private DcMotor frontRight = null;
     private DcMotor backRight = null;
     private DcMotor backLeft = null;
-    private Servo rampServo = null;
     private DcMotor shooter = null;
     private DcMotor intakeMotor = null;
+    private DcMotor wobbleMotor = null;
+    private Servo wobbleServo = null;
+
     /*
     DcMotor frontLeft = null;
     DcMotor frontRight = null;
@@ -126,7 +131,8 @@ public class TelGoBuilda extends LinearOpMode {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //@Override
-    public void runOpMode() throws InterruptedException {
+//    public void runOpMode() throws InterruptedException {
+    public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         /////
@@ -150,15 +156,14 @@ public class TelGoBuilda extends LinearOpMode {
 
         /** (Continuous/Regular) Servo and Motor Usage */
 
-        frontLeft  = hardwareMap.get(DcMotor.class, "frontLeft");
+        frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
         frontRight = hardwareMap.get(DcMotor.class, "frontRight");
-        backLeft  = hardwareMap.get(DcMotor.class, "backLeft");
+        backLeft = hardwareMap.get(DcMotor.class, "backLeft");
         backRight = hardwareMap.get(DcMotor.class, "backRight");
-        rampServo = hardwareMap.get(Servo.class,"rampServo");
-        shooter = hardwareMap.get(DcMotor.class,"shooter");
-        intakeMotor = hardwareMap.get(DcMotor.class,"intakeMotor");
-
-
+        wobbleServo = hardwareMap.get(Servo.class, "wobbleServo");
+        shooter = hardwareMap.get(DcMotor.class, "shooter");
+        intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
+        wobbleMotor = hardwareMap.get(DcMotor.class, "wobbleMotor");
 
 
         //xRail = hardwareMap.get(DcMotor.class, "xRailMotor");
@@ -188,6 +193,7 @@ public class TelGoBuilda extends LinearOpMode {
         frontRight.setDirection(DcMotor.Direction.REVERSE);
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.FORWARD);
+        wobbleServo.setPosition(0);
         //intakeMotor.setDirection(DcMotor.Direction.REVERSE);
         //rampServo.setPosition(0);
         //rampServo.setPosition(-0.90);
@@ -236,11 +242,50 @@ public class TelGoBuilda extends LinearOpMode {
             backRight.setPower((0.6 * gamepad1.right_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0)));
             //shooter.setPower(0.5)
-                    //rampServo.setPosition();
+            //rampServo.setPosition();
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//            for (int i = 0; i < 500000; i++) {
+
             // Intake Movement
-            intakeMotor.setPower(-400000000);
+            intakeMotor.setPower(-1);
+            if (gamepad1.a) {
+                intakeMotor.setPower(0.00);
+            }
+            //Shooter Movement
+            shooter.setPower(0.7);
+            if (gamepad2.a) {
+                shooter.setPower(0.75);
+            }
+            if (gamepad2.b) {
+                shooter.setPower(0.65);
+            }
+            if (gamepad2.x) {
+                shooter.setPower(0.55);
+            }
+            if (gamepad2.y) {
+                shooter.setPower(0.0);
+            }
+//            }
+
+            //Wobble Motor//
+
+            if (gamepad2.dpad_up) {
+                wobbleMotor.setPower(-0.4);
+            } else if (gamepad2.dpad_down) {
+                wobbleMotor.setPower(0.4);
+            } else {
+                wobbleMotor.setPower(0.0);
+            }
+
+            //Wobble Servo//
+            if (gamepad2.left_bumper) {
+                wobbleServo.setPosition(1);
+            }
+            if (gamepad2.right_bumper) {
+                wobbleServo.setPosition(-0.90);
+            }
+
 
             /** Foundation Moving */
 
@@ -275,7 +320,7 @@ public class TelGoBuilda extends LinearOpMode {
             }
 
             // moving ramp servo up and down
-
+            /*
             if(gamepad2.right_bumper){
                 rampServo.setPosition(0.90);
 
@@ -284,11 +329,9 @@ public class TelGoBuilda extends LinearOpMode {
                 rampServo.setPosition(-0.90);
 
             }
+            */
 
             /** X-Rails Slide and Pivot*/
-
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -336,32 +379,7 @@ public class TelGoBuilda extends LinearOpMode {
                 Pivot.setPosition(1);
             }
 */
-
-
-
-
-
-
-            // Slide //
-/*
-            if(gamepad2.dpad_up) {
-                xRail.setPower(-0.7);
-            } else if(gamepad2.dpad_down) {
-                xRail.setPower(0.4);
-            } else{
-                xRail.setPower(0.0);
-            }
-
-            //CAPSTONE//
-
-            if(gamepad2.left_bumper){
-                capstoneServo.setPosition(0.1);
-            }
-            else{
-                capstoneServo.setPosition(0.56);
-            }
-
-
+            /*
             // Pivot //ttttttttttttttttttttttttttttttttw e3rfeow qerer
             /*if((gamepad2.dpad_left && (Pivot.getPosition()<0.5))||check){
                 if(check){
