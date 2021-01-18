@@ -180,7 +180,7 @@ public class RightRed extends LinearOpMode
             robot.wobbleMotor.setPower(0);
             robot.wobbleServo.setPosition(0.1);
             encoderDrive(50,0.9,"drive");
-
+// get ready to shoot
         }
         else if(values[1]==0){
             teleUpdate("SINGLE","");
@@ -192,21 +192,27 @@ public class RightRed extends LinearOpMode
             robot.wobbleServo.setPosition(0.1);
             halfTurn("clockwise");
             encoderDrive(25,0.9,"drive");
+            //get ready to shoot
         }
         else{
             teleUpdate("ZERO","");
 //            navigation("a");
-            encoderDrive(5,0.5,"strafe");
-            encoderDrive(-60,0.9,"drive");
-            halfTurn("counterclockwise");
-            halfTurn("counterclockwise");
-            robot.wobbleMotor.setPower(4000);
+        /*    encoderDrive(5,0.7,"strafe");
+           encoderDrive(-64,0.9,"drive");*/
+           // halfTurn("counterclockwise");
+            //halfTurn("counterclockwise");
+            encoderWobble(-14,0.4);
+            Thread.sleep(500);
+            telemetry.addLine("power: " + robot.wobbleMotor);
+                telemetry.update();
             robot.wobbleMotor.setPower(0);
+            Thread.sleep(500);
             robot.wobbleServo.setPosition(0.1);
-            encoderDrive(10,0.9,"drive");
+            //encoderDrive(-10,0.9,"drive");
 //get ready to shoot
         }
         //drive to the blocks and start vuforia
+        tfod.shutdown();
     }
 
     public void blockServoControlLeft(boolean control){
@@ -239,7 +245,7 @@ public class RightRed extends LinearOpMode
             encoderDrive(1,0.5,"strafe");
             encoderDrive(7,0.9,"drive");
             halfTurn("clockwise");
-            robot.wobbleMotor.setPower(4000);
+            robot.wobbleMotor.setPower(1000);
             robot.wobbleMotor.setPower(0);
             robot.wobbleServo.setPosition(0.1);
             /*blockServoControlRight(true);
@@ -314,10 +320,10 @@ public class RightRed extends LinearOpMode
         resetAngle();
         if(type.equals("counterclockwise")){
             long time = System.currentTimeMillis();
-            while (getAngle() <= 180 && (System.currentTimeMillis()<(time+3000))) {
+            while (getAngle() <= 82 & (System.currentTimeMillis()<(time+6000))) {
                 power = (.75*2*0.684/5.063) * (-Math.pow((((getAngle())+2.9)/37.4),2) + 4.5*((getAngle()+2.9)/37.4)) + 0.159;
-                telemetry.addLine(""+power);
-                telemetry.addLine(""+getAngle());
+                telemetry.addLine("power: "+power);
+                telemetry.addLine("angle: "+getAngle());
                 telemetry.update();
                 robot.frontLeft.setPower(-power);
                 robot.frontRight.setPower(power);
@@ -351,12 +357,17 @@ public class RightRed extends LinearOpMode
     }
 
     public void halfTurn(String type){
+        telemetry.addLine("performing half turn " +  type);
         resetAngle();
         if(type.equals("counterclockwise")){
             long time = System.currentTimeMillis();
-            while (getAngle() <= 82 && (System.currentTimeMillis()<(time+2000))) {
+            telemetry.addLine("time: " + time);
+            while (getAngle() <= 87 & (System.currentTimeMillis()<(time+4600))) {
                 power = (.75*0.684/5.063) * (-Math.pow((((getAngle())+6.5)/19.5),2) + 4.5*((getAngle()+6.5)/19.5)) + 0.159;
-                teleUpdate(""+power,"");
+                telemetry.addLine("power: " + power);
+                telemetry.update();
+                telemetry.addLine("angle: " + getAngle());
+                telemetry.update();
                 robot.frontLeft.setPower(-power);
                 robot.backRight.setPower(power);
                 robot.frontRight.setPower(power);
@@ -423,6 +434,7 @@ public class RightRed extends LinearOpMode
             }
             else{
                 //robot.changeSpeed(-power);
+
                 while (robot.frontRight.getTargetPosition()<robot.frontRight.getCurrentPosition()||
                         robot.frontLeft.getTargetPosition()<robot.frontLeft.getCurrentPosition()||
                         robot.backRight.getTargetPosition()<robot.backRight.getCurrentPosition()||
@@ -495,6 +507,43 @@ public class RightRed extends LinearOpMode
         robot.changeMode(DcMotor.RunMode.RUN_USING_ENCODER);
         Thread.sleep(100);
     }
+
+
+    public void encoderWobble(double inches, double pow) throws InterruptedException {
+        robot.wobbleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.wobbleMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.wobbleMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            //settargetposition is inverse
+            //if setpower command for backward is -, then getpowers for both are both positive
+
+            int startPos1 = robot.wobbleMotor.getCurrentPosition();
+            robot.wobbleMotor.setTargetPosition((int)(inches*COUNTS_PER_INCH));
+            telemetry.addLine(Integer.toString(robot.wobbleMotor.getTargetPosition()) + "<-target       current->" + Integer.toString(robot.wobbleMotor.getCurrentPosition()));
+            telemetry.update();
+            Thread.sleep(3000);
+        if(inches>0) {
+            while (robot.wobbleMotor.getTargetPosition() > robot.wobbleMotor.getCurrentPosition()) {
+                robot.wobbleMotor.setPower(pow);
+                telemetry.addLine(Integer.toString(robot.wobbleMotor.getTargetPosition()) + "<-target       current->" + Integer.toString(robot.wobbleMotor.getCurrentPosition()));
+                telemetry.update();
+            }
+            robot.wobbleMotor.setPower(0);
+        }
+        else{
+            while (robot.wobbleMotor.getTargetPosition() < robot.wobbleMotor.getCurrentPosition()) {
+                robot.wobbleMotor.setPower(-pow);
+                telemetry.addLine(Integer.toString(robot.wobbleMotor.getTargetPosition()) + "<-target       current->" + Integer.toString(robot.wobbleMotor.getCurrentPosition()));
+                telemetry.update();
+            }
+            robot.wobbleMotor.setPower(0);
+        }
+
+        robot.changeMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.changeMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Thread.sleep(100);
+    }
+
+
     public void teleUpdate(String label, String description){
         if (robot != null && robot.frontLeft != null && robot.frontRight != null) {
             telemetry.addLine().addData("Current Position",  "Running at %7d :%7d", robot.frontLeft.getCurrentPosition(), robot.frontRight.getCurrentPosition());
@@ -502,7 +551,9 @@ public class RightRed extends LinearOpMode
         telemetry.addLine().addData(label + ": ", description);
         telemetry.update();
     }
-    private double getAngle()
+
+
+            private double getAngle()
     {
         // We experimentally determined the Z axis is the axis we want to use for heading angle.
         // We have to process the angle because the imu works in euler angles so the Z axis is
@@ -540,7 +591,6 @@ public class RightRed extends LinearOpMode
 
 
 }
-
 
 
 
