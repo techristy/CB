@@ -67,17 +67,18 @@ import com.vuforia.CameraDevice;
 @TeleOp(name="TeleGoBuilda", group="Linear Opmode")
 //@Disabled
 public class TelGoBuilda extends LinearOpMode {
-    public static int convertBoolean(boolean x){
-        if(x){
+    public static int convertBoolean(boolean x) {
+        if (x) {
             return 1;
-        }
-        else return 0;
+        } else return 0;
     }
     // Declare OpMode members.
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /** (Continuous/Regular) Servo and Motor Usage */
+    /**
+     * (Continuous/Regular) Servo and Motor Usage
+     */
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -155,16 +156,14 @@ public class TelGoBuilda extends LinearOpMode {
 
         /** (Continuous/Regular) Servo and Motor Usage */
 
-        frontLeft  = hardwareMap.get(DcMotor.class, "frontLeft");
+        frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
         frontRight = hardwareMap.get(DcMotor.class, "frontRight");
-        backLeft  = hardwareMap.get(DcMotor.class, "backLeft");
+        backLeft = hardwareMap.get(DcMotor.class, "backLeft");
         backRight = hardwareMap.get(DcMotor.class, "backRight");
-        wobbleServo = hardwareMap.get(Servo.class,"wobbleServo");
-        shooter = hardwareMap.get(DcMotor.class,"shooter");
-        intakeMotor = hardwareMap.get(DcMotor.class,"intakeMotor");
+        wobbleServo = hardwareMap.get(Servo.class, "wobbleServo");
+        shooter = hardwareMap.get(DcMotor.class, "shooter");
+        intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
         wobbleMotor = hardwareMap.get(DcMotor.class, "wobbleMotor");
-
-
 
 
         //xRail = hardwareMap.get(DcMotor.class, "xRailMotor");
@@ -194,6 +193,7 @@ public class TelGoBuilda extends LinearOpMode {
         frontRight.setDirection(DcMotor.Direction.REVERSE);
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.FORWARD);
+        wobbleServo.setPosition(0);
         //intakeMotor.setDirection(DcMotor.Direction.REVERSE);
         //rampServo.setPosition(0);
         //rampServo.setPosition(-0.90);
@@ -249,42 +249,42 @@ public class TelGoBuilda extends LinearOpMode {
 
             // Intake Movement
             intakeMotor.setPower(-1);
-
+            if (gamepad1.a) {
+                intakeMotor.setPower(0.00);
+            }
             //Shooter Movement
             shooter.setPower(0.7);
-            if(gamepad2.a) {
+            if (gamepad2.a) {
                 shooter.setPower(0.75);
             }
-            if(gamepad2.b) {
-                wobbleMotor.setPower(0.65);
+            if (gamepad2.b) {
+                shooter.setPower(0.65);
             }
-            if(gamepad2.x){
-                wobbleMotor.setPower(0.55);
+            if (gamepad2.x) {
+                shooter.setPower(0.55);
             }
-            if(gamepad2.y){
-                wobbleMotor.setPower(0.0);
+            if (gamepad2.y) {
+                shooter.setPower(0.0);
             }
 //            }
 
             //Wobble Motor//
 
-            if(gamepad2.dpad_up) {
-                wobbleMotor.setPower(-0.2);
-            } else if(gamepad2.dpad_down) {
-                wobbleMotor.setPower(0.2);
-            } else{
+            if (gamepad2.dpad_up) {
+                wobbleMotor.setPower(-0.4);
+            } else if (gamepad2.dpad_down) {
+                wobbleMotor.setPower(0.4);
+            } else {
                 wobbleMotor.setPower(0.0);
             }
 
             //Wobble Servo//
-
-            if(gamepad2.left_bumper){
-                wobbleServo.setPosition(0.90);
+            if (gamepad2.left_bumper) {
+                wobbleServo.setPosition(1);
             }
-            else{
-                wobbleServo.setPosition(0.0);
+            if (gamepad2.right_bumper) {
+                wobbleServo.setPosition(-0.90);
             }
-
 
 
             /** Foundation Moving */
@@ -332,9 +332,6 @@ public class TelGoBuilda extends LinearOpMode {
             */
 
             /** X-Rails Slide and Pivot*/
-
-
-
 
 
 //////////////////////////////////////////////////////////////////////////////////
