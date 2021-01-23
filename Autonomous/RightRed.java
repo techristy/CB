@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -166,16 +167,28 @@ public class RightRed extends LinearOpMode
         waitForStart();
 
         //encoderDrive(30, "drive");
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
+//        encoderDrive(-5,1.0,"strafe");
+//        encoderDrive(-66,0.9,"drive");
+//        halfTurn("counterclockwise");
+//        halfTurn("counterclockwise");
+//        encoderWobble(-14,0.4);
+//        Thread.sleep(100);
+//        robot.wobbleServo.setPosition(1.0);
+//        encoderDrive(5,1,"strafe");
+//        Thread.sleep(100);
+//        encoderWobble(14,0.4);
+
+        //   encoderDrive(-10,0.9,"drive");
         int[] values = {valQUAD,valSingle,valZero};
         //webcam.closeCameraDevice();
         if(values[0]==0){
             teleUpdate("QUAD","");
             navigation("c");
-            encoderDrive(5,0.5,"strafe");
+            encoderDrive(-5,0.5,"strafe");
             encoderDrive(-100,0.9,"drive");
             halfTurn("counterclockwise");
-            halfTurn("counterclockwise");
+
             robot.wobbleMotor.setPower(4000);
             robot.wobbleMotor.setPower(0);
             robot.wobbleServo.setPosition(0.1);
@@ -197,18 +210,27 @@ public class RightRed extends LinearOpMode
         else{
             teleUpdate("ZERO","");
            // navigation("a");
-           encoderDrive(-5,1.0,"strafe");
-           encoderDrive(-66,0.9,"drive");
-      /*      halfTurn("counterclockwise");
+           encoderDrive(5,1.0,"strafe");
+           encoderDrive(-72,0.9,"drive");
             halfTurn("counterclockwise");
             encoderWobble(-14,0.4);
-            Thread.sleep(100);
+//            Thread.sleep(10);
             robot.wobbleServo.setPosition(1.0);
             encoderDrive(5,1,"strafe");
-            Thread.sleep(100);
-            encoderWobble(14,0.4);*/
+//            Thread.sleep(100);
+            robot.wobbleServo.setPosition(-1.0);
+            encoderWobble(14,0.4);
+            encoderDrive(13,1.0,"strafe");
+            encoderDrive(-10,0.9,"drive");
 
-         //   encoderDrive(-10,0.9,"drive");
+         robot.shooterMotor.setPower(1000);
+         robot.shooterServo.setPosition(1);
+            robot.shooterServo.setPosition(0);
+            robot.shooterServo.setPosition(1);
+            robot.shooterServo.setPosition(0);
+            robot.shooterServo.setPosition(1);
+            robot.shooterServo.setPosition(0);
+            robot.shooterMotor.setPower(0);
 //get ready to shoot
         }
         //drive to the blocks and start vuforia
@@ -242,12 +264,12 @@ public class RightRed extends LinearOpMode
 
 
         if(type.equals("a")) {
-            encoderDrive(1,0.5,"strafe");
-            encoderDrive(7,0.9,"drive");
-            halfTurn("clockwise");
-            robot.wobbleMotor.setPower(1000);
-            robot.wobbleMotor.setPower(0);
-            robot.wobbleServo.setPosition(0.1);
+//            encoderDrive(1,0.5,"strafe");
+//            encoderDrive(7,0.9,"drive");
+//            halfTurn("clockwise");
+//            robot.wobbleMotor.setPower(1000);
+//            robot.wobbleMotor.setPower(0);
+//            robot.wobbleServo.setPosition(0.1);
             /*blockServoControlRight(true);
             Thread.sleep(333);
             encoderDrive(-1,  0.9, "drive");
@@ -520,7 +542,7 @@ public class RightRed extends LinearOpMode
             robot.wobbleMotor.setTargetPosition((int)(inches*COUNTS_PER_INCH));
             telemetry.addLine(Integer.toString(robot.wobbleMotor.getTargetPosition()) + "<-target       current->" + Integer.toString(robot.wobbleMotor.getCurrentPosition()));
             telemetry.update();
-            Thread.sleep(3000);
+//            Thread.sleep(3000);
         if(inches>0) {
             while (robot.wobbleMotor.getTargetPosition() > robot.wobbleMotor.getCurrentPosition()) {
                 robot.wobbleMotor.setPower(pow);
@@ -540,7 +562,7 @@ public class RightRed extends LinearOpMode
 
         robot.changeMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.changeMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        Thread.sleep(100);
+//        Thread.sleep(100);
     }
 
 
