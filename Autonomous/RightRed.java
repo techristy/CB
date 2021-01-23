@@ -166,16 +166,28 @@ public class RightRed extends LinearOpMode
         waitForStart();
 
         //encoderDrive(30, "drive");
-        Thread.sleep(1000);
+//        Thread.sleep(1000);
+//        encoderDrive(-5,1.0,"strafe");
+//        encoderDrive(-66,0.9,"drive");
+//        halfTurn("counterclockwise");
+//        halfTurn("counterclockwise");
+//        encoderWobble(-14,0.4);
+//        Thread.sleep(100);
+//        robot.wobbleServo.setPosition(1.0);
+//        encoderDrive(5,1,"strafe");
+//        Thread.sleep(100);
+//        encoderWobble(14,0.4);
+ z-;/
+        //   encoderDrive(-10,0.9,"drive");
         int[] values = {valQUAD,valSingle,valZero};
         //webcam.closeCameraDevice();
         if(values[0]==0){
             teleUpdate("QUAD","");
             navigation("c");
-            encoderDrive(5,0.5,"strafe");
+            encoderDrive(-5,0.5,"strafe");
             encoderDrive(-100,0.9,"drive");
             halfTurn("counterclockwise");
-            halfTurn("counterclockwise");
+
             robot.wobbleMotor.setPower(4000);
             robot.wobbleMotor.setPower(0);
             robot.wobbleServo.setPosition(0.1);
@@ -197,18 +209,17 @@ public class RightRed extends LinearOpMode
         else{
             teleUpdate("ZERO","");
            // navigation("a");
-           encoderDrive(-5,1.0,"strafe");
+           encoderDrive(5,1.0,"strafe");
            encoderDrive(-66,0.9,"drive");
-      /*      halfTurn("counterclockwise");
             halfTurn("counterclockwise");
             encoderWobble(-14,0.4);
             Thread.sleep(100);
             robot.wobbleServo.setPosition(1.0);
             encoderDrive(5,1,"strafe");
             Thread.sleep(100);
-            encoderWobble(14,0.4);*/
+            encoderWobble(14,0.4);
 
-         //   encoderDrive(-10,0.9,"drive");
+            encoderDrive(-10,0.9,"drive");
 //get ready to shoot
         }
         //drive to the blocks and start vuforia
@@ -242,12 +253,12 @@ public class RightRed extends LinearOpMode
 
 
         if(type.equals("a")) {
-            encoderDrive(1,0.5,"strafe");
-            encoderDrive(7,0.9,"drive");
-            halfTurn("clockwise");
-            robot.wobbleMotor.setPower(1000);
-            robot.wobbleMotor.setPower(0);
-            robot.wobbleServo.setPosition(0.1);
+//            encoderDrive(1,0.5,"strafe");
+//            encoderDrive(7,0.9,"drive");
+//            halfTurn("clockwise");
+//            robot.wobbleMotor.setPower(1000);
+//            robot.wobbleMotor.setPower(0);
+//            robot.wobbleServo.setPosition(0.1);
             /*blockServoControlRight(true);
             Thread.sleep(333);
             encoderDrive(-1,  0.9, "drive");
