@@ -59,7 +59,7 @@ import com.vuforia.CameraDevice;
 
 @TeleOp(name="Tel wobble", group="Linear Opmode")
 //@Disabled
-public class Tel_wobble extends LinearOpMode {
+public class  Tel_wobble extends LinearOpMode {
     public static int convertBoolean(boolean x){
         if(x){
             return 1;
@@ -79,6 +79,7 @@ public class Tel_wobble extends LinearOpMode {
     private DcMotor backLeft = null;
     private DcMotor liftMotor = null;
     private DcMotor  intake = null;
+    private DcMotor shooter = null;
     //private DcMotor shooter = null;
     /*private DcMotor xRail = null;
     private Servo Pivot = null;
@@ -91,6 +92,7 @@ public class Tel_wobble extends LinearOpMode {
     private CRServo contServo_left = null;
     */
     private Servo gripServo = null;
+    private Servo shooterServo = null;
     //private Servo gripServo = null;
 
     //private Servo FoundationRight = null;
@@ -135,6 +137,8 @@ public class Tel_wobble extends LinearOpMode {
         backRight = hardwareMap.get(DcMotor.class, "backRight");
         liftMotor = hardwareMap.get(DcMotor.class, "wobbleMotor");
         intake = hardwareMap.get(DcMotor.class,"intakeMotor");
+        shooter = hardwareMap.get(DcMotor.class,"shooterMotor");
+        shooterServo = hardwareMap.get(Servo.class,"shooterServo");
         //shooter = hardwareMap.get(DcMotor.class,"shooter");
 
 
@@ -180,222 +184,48 @@ public class Tel_wobble extends LinearOpMode {
             }
             //else{shooter.setPower(0);}
             intake.setPower(gamepad2.left_stick_x);
-            // Setup a variable for each drive wheel to save power level for telemetry
-            //double leftPower;
-            //double rightPower;
+            if(gamepad2.left_bumper){
+                shooter.setPower(1);
+            }
+            else if(gamepad2.right_bumper){
+                shooter.setPower(-1);
+            }
+            else{shooter.setPower(0);}
 
-            // Choose to drive using either Tank Mode, or POV Mode
-            // Comment out the method that's not used.  The default below is POV.
-
-            // POV Mode uses left stick to go forward, and right stick to turn.
-            // - This uses basic math to combine motions and is easier to drive straight.
-            //double drive = -gamepad1.left_stick_y;
-            //double turn  =  gamepad1.right_stick_x;
-            //leftPower    = Range.clip(drive + turn, -1.0, 1.0) ;
-            //rightPower   = Range.clip(drive - turn, -1.0, 1.0) ;
-
-            // Tank Mode uses one stick to control each wheel.
-            // - This requires no math, but it is hard to drive forward slowly and keep straight.
-            //leftPower  = -gamepad1.left_stick_y ;
-            //rightPower = -gamepad1.right_stick_y ;
-
-            // Send calculated power to wheels
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            if(gamepad2.a){
+                shooterServo.setPosition(0);
+            }
+            else if(gamepad2.b){
+                shooterServo.setPosition(1);
+            }
+            else{}
+           //////////////////////////////////////////////////////////////
 
             /** Strafing */
 
-            frontLeft.setPower((0.6 * gamepad1.left_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
-                    - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0)));
-            frontRight.setPower((0.6 * gamepad1.right_stick_y) - gamepad1.left_trigger + gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
-                    - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0)));
-            backLeft.setPower((0.6 * gamepad1.left_stick_y) - gamepad1.left_trigger + gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
-                    - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0)));
-            backRight.setPower((0.6 * gamepad1.right_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
-                    - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0)));
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            /** Foundation Moving */
-
-           /* if(gamepad1.x == true) {
-                FoundationLeft.setPosition(0.85);    //Pull Position 0.75
-                FoundationRight.setPosition(0.15);    //Pull Position 0.2
-            }
-            else{
-                FoundationLeft.setPosition(0.28);
-                FoundationRight.setPosition(0.88);
-            }
-*/
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            /** Changing Intake Wheel Directions */
-            /////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            if (gamepad1.left_bumper) {
-
-                //contServo_left.setPower(-2);
-            }
-            //else if (gamepad1.right_bumper || gamepad2.x) {
-            //contServo_left.setPower(0.05);
-            //    intakeServo.setPower(-0.05);
-            //}
-            else {
-                //contServo_left.setPower(2);
-            }
-
-            /*
-            if(gamepad2.right_bumper){
-                FoundationLeft.setPosition(0.46);
-                FoundationRight.setPosition(0.355);
-            }
-            else if(gamepad2.left_bumper){
-                FoundationLeft.setPosition(0);
-                FoundationRight.setPosition(0.9);
-            }*/
-
-            /** X-Rails Slide and Pivot*/
+            frontLeft.setPower(-((0.6 * gamepad1.left_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
+                    - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
+            frontRight.setPower(-((0.6 * gamepad1.right_stick_y) - gamepad1.left_trigger + gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
+                    - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
+            backLeft.setPower(-((0.6 * gamepad1.left_stick_y) - gamepad1.left_trigger + gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
+                    - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
+            backRight.setPower(-((0.6 * gamepad1.right_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
+                    - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
 
 
 
-
-
-//////////////////////////////////////////////////////////////////////////////////
-            /*
-            if(gamepad2.a)
-            {
-                rightHolder.setPosition(0.20);
-                leftHolder.setPosition(0.86);
-            }
-            if(gamepad2.b && !(System.currentTimeMillis()<(millis+1000))){
-                rightHolder.setPosition(0.88);
-                leftHolder.setPosition(0.2);
-            }
+            liftMotor.setPower((0.6 * gamepad2.right_stick_y) - gamepad2.left_trigger + gamepad2.right_trigger - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
+                    - (0.25 * (gamepad2.dpad_up ? 1 : 0)) + (0.3 * (gamepad2.dpad_down ? 1 : 0)));
+            /**Shooter*/
             if(gamepad2.x){
-                gripServo.setPosition(0.05);
-            }
-            else gripServo.setPosition(0.3);
-
-            ////////////////////////////////////////////////////
-            /*if(gamepad2.a)
-            {
-                rightHolder.setPosition(0.17);
-                leftHolder.setPosition(0.93);
-                gripServo.setPosition(0.05);
-            }
-            if(gamepad2.b)
-            {
-                gripServo.setPosition(0.3);
-                rightHolder.setPosition(0.88);
-                leftHolder.setPosition(0.2);
-            }
-            if(gamepad2.x){
-                rightHolder.setPosition(0.28);
-                leftHolder.setPosition(0.89);
-            }*/
-
-
-/*
-            if(gamepad2.dpad_left)
-            {
-                Pivot.setPosition(0);
-            }
-            if(gamepad2.dpad_right)
-            {
-                Pivot.setPosition(1);
-            }
-*/
-
-
-
-
-
-
-            // Slide //
-/*
-            if(gamepad2.dpad_up) {
-                xRail.setPower(-0.7);
-            } else if(gamepad2.dpad_down) {
-                xRail.setPower(0.4);
-            } else{
-                xRail.setPower(0.0);
-            }
-
-            //CAPSTONE//
-
-            if(gamepad2.left_bumper){
-                capstoneServo.setPosition(0.1);
-            }
-            else{
-                capstoneServo.setPosition(0.56);
-            }
-
-
-            // Pivot //ttttttttttttttttttttttttttttttttw e3rfeow qerer
-            /*if((gamepad2.dpad_left && (Pivot.getPosition()<0.5))||check){
-                if(check){
-                    i=i+0.5;
-                    Pivot.setPosition(i/100);
-                    if(i==100){
-                        check=false;
-                    }
-                }
-                else{
-                    check=true;
-                    i=5;
-                }
-                //Pivot.setPosition(0.95);
-            }
-
-            else if((gamepad2.dpad_right && Pivot.getPosition()>0.5)||check2){
-                if(check2){
-                    i=i-0.5;
-                    Pivot.setPosition(i/100);
-                    if(i==0){
-                        check2=false;
-                    }
-                }
-                else{
-                    check2=true;
-                    i=100;
-                }
-                //Pivot.setPosition(0.95);
-            }*/
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-            /** Strafing Test (Depreciated)
-
-
-             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-             /** Torch Toggle */
-
-//            if(gamepad1.b == true) {
-//                Camera.Parameters p = cam.getParameters();
-//                p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
-//                cam.setParameters(p);
-//                cam.startPreview();
-//            } else {
-//                cam.stopPreview();
-//                cam.release();
-//            }
-            /**Wobblegoal*/
-
-            //liftMotor.setPower((0.45 * gamepad2.left_stick_y));
-            //if gripServo.setPower(gamepad2.a);
-            //gripServo.setPower(0.6 * gamepad2.a);
-            //gripServo.setPower(gamepad2.b);
-            //gripServo.setPower(0.6 * gamepad2.a);
-            if(gamepad2.a){
                 gripServo.setPosition(0.1);
             }
-            else if(gamepad2.b){
+            else if(gamepad2.y){
                 gripServo.setPosition(0.9);
             }
 
 
-            liftMotor.setPower((0.6 * gamepad2.right_stick_y) - gamepad1.left_trigger + gamepad2.right_trigger - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
+            liftMotor.setPower((0.6 * gamepad2.right_stick_y) - gamepad2.left_trigger + gamepad2.right_trigger - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad2.dpad_up ? 1 : 0)) + (0.3 * (gamepad2.dpad_down ? 1 : 0)));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
