@@ -114,7 +114,7 @@ public class TelGoBuilda extends LinearOpMode {
 
     private CRServo contServo_left = null;
     */
-    private CRServo intakeServo = null;
+    //private CRServo intakeServo = null;
 
 
     //private Servo gripServo = null;
@@ -191,8 +191,8 @@ public class TelGoBuilda extends LinearOpMode {
         // Reverse the motor that runs backwards when connected directly to the battery
         frontLeft.setDirection(DcMotor.Direction.FORWARD);
         frontRight.setDirection(DcMotor.Direction.REVERSE);
-        backLeft.setDirection(DcMotor.Direction.REVERSE);
-        backRight.setDirection(DcMotor.Direction.FORWARD);
+        backLeft.setDirection(DcMotor.Direction.FORWARD);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
         wobbleServo.setPosition(0);
         //intakeMotor.setDirection(DcMotor.Direction.REVERSE);
         //rampServo.setPosition(0);
@@ -210,8 +210,8 @@ public class TelGoBuilda extends LinearOpMode {
         while (opModeIsActive()) {
 
             // Setup a variable for each drive wheel to save power level for telemetry
-            //double leftPower;
-            //double rightPower;
+            double leftPower;
+            double rightPower;
 
             // Choose to drive using either Tank Mode, or POV Mode
             // Comment out the method that's not used.  The default below is POV.

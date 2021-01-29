@@ -44,7 +44,7 @@ import static org.firstinspires.ftc.teamcode.ConceptTensorFlowObjectDetectionWeb
 import static org.firstinspires.ftc.teamcode.ConceptTensorFlowObjectDetectionWebcam.TFOD_MODEL_ASSET;
 //import static org.firstinspires.ftc.teamcode.WebcamTest.VUFORIA_KEY;
 
-@Autonomous(name="RightRedGoBuilda", group="Pushbot")
+@Autonomous(name="RightRedGoBuilda1", group="Pushbot")
 
 public class RightRedGoBuilda extends LinearOpMode
 {
@@ -65,7 +65,7 @@ public class RightRedGoBuilda extends LinearOpMode
 
     //BNO055IMU imu;
     //Orientation lastAngles = new Orientation();
-    double                  globalAngle, power = .50, correction, rotation;
+    double                  globalAngle, power = .3, correction, rotation;
     PIDController           pidRotate, pidDrive;
     HardwarePushbot robot = new HardwarePushbot();
     private ElapsedTime runtime = new ElapsedTime();
@@ -175,6 +175,8 @@ public class RightRedGoBuilda extends LinearOpMode
 
         //encoderDrive(30, "drive");
         //Thread.sleep(1000);
+        encoderDrive(7,0.3,"drive");
+        /*
         int[] values = {valQUAD,valSingle,valZero};
         //webcam.closeCameraDevice();
         if(values[0]==0){
@@ -190,6 +192,8 @@ public class RightRedGoBuilda extends LinearOpMode
             navigation("a");
         }
         //drive to the blocks and start vuforia
+
+         */
     }
 
     public void blockServoControlLeft(boolean control){
@@ -219,12 +223,12 @@ public class RightRedGoBuilda extends LinearOpMode
 
 
         if(type.equals("a")) {
-            encoderDrive(1,0.5,"strafe");
-            encoderDrive(7,0.9,"drive");
-            halfTurn("clockwise");
-            robot.wobbleMotor.setPower(4000);
-            robot.wobbleMotor.setPower(0);
-            robot.wobbleServo.setPosition(0.1);
+            //encoderDrive(1,0.5,"strafe");
+            //encoderDrive(7,0.3,"drive");
+            //halfTurn("clockwise");
+            //robot.wobbleMotor.setPower(4000);
+            //robot.wobbleMotor.setPower(0);
+            //robot.wobbleServo.setPosition(0.1);
             /*blockServoControlRight(true);
             Thread.sleep(333);
             encoderDrive(-1,  0.9, "drive");
