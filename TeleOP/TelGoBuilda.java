@@ -290,11 +290,11 @@ public class TelGoBuilda extends LinearOpMode {
             }
 
             //Ramp Servo//
-            if (gamepad2.dpad_left) {
-                rampServo.setPosition(0.45);
+            if (gamepad2.dpad_right) {
+                rampServo.setPosition(0.30);
             }
             if (gamepad2.dpad_left) {
-                rampServo.setPosition(-0.90);
+                rampServo.setPosition(-0.100);
             }
 
 
