@@ -91,6 +91,7 @@ public class TelGoBuilda extends LinearOpMode {
     private DcMotor intakeMotor = null;
     private DcMotor wobbleMotor = null;
     private Servo wobbleServo = null;
+    private Servo rampServo = null;
 
     /*
     DcMotor frontLeft = null;
@@ -161,6 +162,7 @@ public class TelGoBuilda extends LinearOpMode {
         backLeft = hardwareMap.get(DcMotor.class, "backLeft");
         backRight = hardwareMap.get(DcMotor.class, "backRight");
         wobbleServo = hardwareMap.get(Servo.class, "wobbleServo");
+        rampServo = hardwareMap.get(Servo.class, "rampServo");
         shooter = hardwareMap.get(DcMotor.class, "shooter");
         intakeMotor = hardwareMap.get(DcMotor.class, "intakeMotor");
         wobbleMotor = hardwareMap.get(DcMotor.class, "wobbleMotor");
@@ -194,6 +196,7 @@ public class TelGoBuilda extends LinearOpMode {
         backLeft.setDirection(DcMotor.Direction.FORWARD);
         backRight.setDirection(DcMotor.Direction.REVERSE);
         wobbleServo.setPosition(0);
+        rampServo.setPosition(-.45);
         //intakeMotor.setDirection(DcMotor.Direction.REVERSE);
         //rampServo.setPosition(0);
         //rampServo.setPosition(-0.90);
@@ -250,7 +253,7 @@ public class TelGoBuilda extends LinearOpMode {
             // Intake Movement
             intakeMotor.setPower(-1);
             if (gamepad1.a) {
-                intakeMotor.setPower(0.00);
+                intakeMotor.setPower(1);
             }
             //Shooter Movement
             shooter.setPower(0.7);
@@ -285,6 +288,15 @@ public class TelGoBuilda extends LinearOpMode {
             if (gamepad2.right_bumper) {
                 wobbleServo.setPosition(-0.90);
             }
+
+            //Ramp Servo//
+            if (gamepad2.dpad_right) {
+                rampServo.setPosition(0.30);
+            }
+            if (gamepad2.dpad_left) {
+                rampServo.setPosition(-0.100);
+            }
+
 
 
             /** Foundation Moving */
