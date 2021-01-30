@@ -64,8 +64,8 @@ public class RightRed extends LinearOpMode
 
     //DRIVE, IMU, AND ACCEL CONSTANTS
 
-    //BNO055IMU imu;
-    //Orientation lastAngles = new Orientation();
+    BNO055IMU imu;
+    Orientation lastAngles = new Orientation();
     double                  globalAngle, power = .50, correction, rotation;
     PIDController           pidRotate, pidDrive;
     HardwarePushbot robot = new HardwarePushbot();
@@ -123,15 +123,15 @@ public class RightRed extends LinearOpMode
         //robot.FoundationMoverLeft.setPosition(0.3);    //Pull Position 0.75
         //robot.FoundationMoverRight.setPosition(0.88);
         robot.changeMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        // parameters.mode                = BNO055IMU.SensorMode.IMU;
-        //parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
-        //parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        //parameters.loggingEnabled      = false;
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.mode                = BNO055IMU.SensorMode.IMU;
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.loggingEnabled      = false;
         teleUpdate("WWWWWWWWWWWWWWWWWWWWWWWWWWWWW","");
-        //imu = hardwareMap.get(BNO055IMU.class, "imu2");
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
         teleUpdate("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee","");
-        //imu.initialize(parameters);
+        imu.initialize(parameters);
         teleUpdate("QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQqqq","");
         pidRotate = new PIDController(.003, .00003, 0);
         teleUpdate("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA","");
@@ -139,23 +139,23 @@ public class RightRed extends LinearOpMode
 
         telemetry.addData("Mode", "calibrating...");
         telemetry.update();
-        //while (!isStopRequested() && !imu.isGyroCalibrated())
+        while (!isStopRequested() && !imu.isGyroCalibrated())
         {
-            //    sleep(50);
-            //    idle();
+                sleep(50);
+                idle();
         }
         telemetry.addData("Mode", "waiting for start");
         //telemetry.addData("imu calib status", imu.getCalibrationStatus().toString());
         telemetry.update();
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+        VuforiaLocalizer.Parameters vparameters = new VuforiaLocalizer.Parameters();
         String VUFORIA_KEY =
                 "  ARGKFNf/////AAABmeWmTIKr70aQrGH7lC6M8xBPdcMfnaNjD/dopWNwdsWuQbrZLFQZZBr/eFBlpHuykY0IY4f9Y34OVFaL4NRxmFd4ghxNkwK3Cjl/4Jo6bf/v+ovD7Tqdf8cT0A3McQF2rxOPE8fsmaC2TfCr8nZquqbbaTZT7bxtuvi8skuLfHg0BNRGaKtEYyPaJ+wdvAcJZ8+2rZ6q+77Ooh2teMYGmJRe+KDD8LmIMn5Jh/r/Lbm9WqjmxuSV6NxwAwpqTPydgJAE/19fXRVbC4+vGWAiiAxd/UIrLxDtgwekkiudCLSa1r1Y8XjtaTeUUWYXl7+iAxkAOX3ZYa84fFrPGnFvYdhjnIuRGo4AgL6dvb/pQEaK ";
 
-        parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
+        vparameters.vuforiaLicenseKey = VUFORIA_KEY;
+        vparameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
         VuforiaLocalizer vuforia = null;
         //  Instantiate the Vuforia engine
-        vuforia = ClassFactory.getInstance().createVuforia(parameters);
+        vuforia = ClassFactory.getInstance().createVuforia(vparameters);
         TFObjectDetector tfod;
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -163,7 +163,7 @@ public class RightRed extends LinearOpMode
         tfodParameters.minResultConfidence = 0.8f;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         waitForStart();
 
         //encoderDrive(30, "drive");
@@ -185,8 +185,7 @@ public class RightRed extends LinearOpMode
         if(values[0]==0){
             teleUpdate("QUAD","");
             navigation("c");
-            encoderDrive(-5,0.5,"strafe");
-            encoderDrive(-100,0.9,"drive");
+            encoderDrive(500000,0.5,"strafe");
             halfTurn("counterclockwise");
 
             robot.wobbleMotor.setPower(4000);
@@ -209,28 +208,38 @@ public class RightRed extends LinearOpMode
         }
         else{
             teleUpdate("ZERO","");
-           // navigation("a");
-           encoderDrive(5,1.0,"strafe");
-           encoderDrive(-72,0.9,"drive");
-            halfTurn("counterclockwise");
+            //encoderDrive(20000,0.9,"drive"); used for testing
+           encoderDrive(-5,0.5,"strafe");
+//           encoderDrive(5,1.0,"strafe");
+           encoderDrive(72,1.0,"drive");
+            fullTurn("clockwise");
             encoderWobble(-14,0.4);
-//            Thread.sleep(10);
+            Thread.sleep(10);
             robot.wobbleServo.setPosition(1.0);
             encoderDrive(5,1,"strafe");
-//            Thread.sleep(100);
+            Thread.sleep(100);
             robot.wobbleServo.setPosition(-1.0);
             encoderWobble(14,0.4);
-            encoderDrive(13,1.0,"strafe");
-            encoderDrive(-10,0.9,"drive");
+            encoderDrive(-7,1.0,"strafe");
+            encoderDrive(12,0.9,"drive");
 
-         robot.shooterMotor.setPower(1000);
-         robot.shooterServo.setPosition(1);
-            robot.shooterServo.setPosition(0);
-            robot.shooterServo.setPosition(1);
-            robot.shooterServo.setPosition(0);
-            robot.shooterServo.setPosition(1);
-            robot.shooterServo.setPosition(0);
-            robot.shooterMotor.setPower(0);
+                robot.shooterMotor.setPower(0.9);
+                Thread.sleep(2000);
+                robot.shooterServo.setPosition(1);
+                Thread.sleep(500);
+                robot.shooterServo.setPosition(0);
+                Thread.sleep(500);
+                robot.shooterServo.setPosition(1);
+                Thread.sleep(500);
+                robot.shooterServo.setPosition(0);
+                Thread.sleep(500);
+                robot.shooterServo.setPosition(1);
+                Thread.sleep(500);
+                robot.shooterServo.setPosition(0);
+                Thread.sleep(500);
+                robot.shooterMotor.setPower(0);
+            encoderDrive(7,0.9,"drive");
+
 //get ready to shoot
         }
         //drive to the blocks and start vuforia
@@ -347,10 +356,10 @@ public class RightRed extends LinearOpMode
                 telemetry.addLine("power: "+power);
                 telemetry.addLine("angle: "+getAngle());
                 telemetry.update();
-                robot.frontLeft.setPower(-power);
-                robot.frontRight.setPower(power);
-                robot.backRight.setPower(power);
-                robot.backLeft.setPower(-power);
+                robot.frontLeft.setPower(power);
+                robot.frontRight.setPower(-power);
+                robot.backRight.setPower(-power);
+                robot.backLeft.setPower(power);
             }
             robot.frontLeft.setPower(0);
             robot.frontRight.setPower(0);
@@ -364,10 +373,10 @@ public class RightRed extends LinearOpMode
                 telemetry.addLine(""+power);
                 telemetry.addLine(""+getAngle());
                 telemetry.update();
-                robot.frontLeft.setPower(power);
-                robot.frontRight.setPower(-power);
-                robot.backRight.setPower(-power);
-                robot.backLeft.setPower(power);
+                robot.frontLeft.setPower(-power);
+                robot.frontRight.setPower(power);
+                robot.backRight.setPower(power);
+                robot.backLeft.setPower(-power);
             }
             robot.frontLeft.setPower(0);
             robot.frontRight.setPower(0);
@@ -384,16 +393,16 @@ public class RightRed extends LinearOpMode
         if(type.equals("counterclockwise")){
             long time = System.currentTimeMillis();
             telemetry.addLine("time: " + time);
-            while (getAngle() <= 87 & (System.currentTimeMillis()<(time+4600))) {
-                power = (.75*0.684/5.063) * (-Math.pow((((getAngle())+6.5)/19.5),2) + 4.5*((getAngle()+6.5)/19.5)) + 0.159;
+            while (getAngle() <= 87 & (System.currentTimeMillis()<(time+10000))) {
+                power = (0.75 /*used to be .75*/ *0.684/5.063) * (-Math.pow((((getAngle())+6.5)/19.5),2) + 4.5*((getAngle()+6.5)/19.5)) + 0.159;
                 telemetry.addLine("power: " + power);
                 telemetry.update();
                 telemetry.addLine("angle: " + getAngle());
                 telemetry.update();
-                robot.frontLeft.setPower(-power);
-                robot.backRight.setPower(power);
-                robot.frontRight.setPower(power);
-                robot.backLeft.setPower(-power);
+                robot.frontLeft.setPower(power);
+                robot.backRight.setPower(-power);
+                robot.frontRight.setPower(-power);
+                robot.backLeft.setPower(power);
             }
             robot.frontLeft.setPower(0);
             robot.backRight.setPower(0);
@@ -405,10 +414,10 @@ public class RightRed extends LinearOpMode
             while (getAngle() >= -82 && (System.currentTimeMillis()<(time+2000))) {
                 power = (.75*0.684/5.063) * (-Math.pow((((-getAngle())+6.5)/19.5),2) + 4.5*((-getAngle()+6.5)/19.5)) + 0.159;
                 teleUpdate(""+power,"");
-                robot.frontLeft.setPower(power);
-                robot.backRight.setPower(-power);
-                robot.frontRight.setPower(-power);
-                robot.backLeft.setPower(power);
+                robot.frontLeft.setPower(-power);
+                robot.backRight.setPower(power);
+                robot.frontRight.setPower(power);
+                robot.backLeft.setPower(-power);
             }
             robot.frontLeft.setPower(0);
             robot.backRight.setPower(0);
@@ -438,7 +447,11 @@ public class RightRed extends LinearOpMode
             robot.frontRight.setTargetPosition((int)(inches*COUNTS_PER_INCH));
             robot.backLeft.setTargetPosition((int)(inches*COUNTS_PER_INCH));
             double currentPosInches;
-            if(inches>=0) {
+            if(inches<=0) {
+                robot.frontLeft.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+                robot.backRight.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+                robot.frontRight.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+                robot.backLeft.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
                 //robot.changeSpeed(power);
                 while (robot.frontRight.getTargetPosition()>robot.frontRight.getCurrentPosition()||
                         robot.frontLeft.getTargetPosition()>robot.frontLeft.getCurrentPosition()||
@@ -447,28 +460,31 @@ public class RightRed extends LinearOpMode
                     correction = pidDrive.performPID(getAngle());
                     currentPosInches = ((robot.frontLeft.getCurrentPosition() - startPos1) / COUNTS_PER_INCH);
                     teleUpdate("CURRENTPOSINCHES: "+currentPosInches+"","");
-                    power = function.getPowerAt(currentPosInches, inches, pow, "drive");
-                    robot.frontLeft.setPower(power - correction);
-                    robot.backRight.setPower(power + correction);
-                    robot.frontRight.setPower(power + correction);
-                    robot.backLeft.setPower(power - correction);
+                    power = function.getPowerAt(currentPosInches, -inches, pow, "drive");
+                    robot.frontLeft.setPower(power + correction);
+                    robot.backRight.setPower(power - correction);
+                    robot.frontRight.setPower(power - correction);
+                    robot.backLeft.setPower(power + correction);
                 }
             }
             else{
                 //robot.changeSpeed(-power);
-
+                robot.frontLeft.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+                robot.backRight.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+                robot.frontRight.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+                robot.backLeft.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
                 while (robot.frontRight.getTargetPosition()<robot.frontRight.getCurrentPosition()||
                         robot.frontLeft.getTargetPosition()<robot.frontLeft.getCurrentPosition()||
                         robot.backRight.getTargetPosition()<robot.backRight.getCurrentPosition()||
                         robot.backLeft.getTargetPosition()<robot.backLeft.getCurrentPosition()) {
                     correction = pidDrive.performPID(getAngle());
                     currentPosInches = ((robot.frontLeft.getCurrentPosition() - startPos1) / COUNTS_PER_INCH * -1);
-                    power = -function.getPowerAt(currentPosInches, -inches, pow, "drive");
+                    power = -function.getPowerAt(currentPosInches, inches, pow, "drive");
                     teleUpdate("POWER: "+ power+"","");
-                    robot.frontLeft.setPower((power - correction));
-                    robot.backRight.setPower((power + correction));
-                    robot.frontRight.setPower((power + correction));
-                    robot.backLeft.setPower((power - correction));
+                    robot.frontLeft.setPower((power + correction));
+                    robot.backRight.setPower((power - correction));
+                    robot.frontRight.setPower((power - correction));
+                    robot.backLeft.setPower((power + correction));
                 }
             }
             robot.changeSpeed(0);
@@ -484,14 +500,35 @@ public class RightRed extends LinearOpMode
             int startPos2 = robot.backLeft.getCurrentPosition();
             int startPos3 = robot.frontRight.getCurrentPosition();
             int startPos4 = robot.backRight.getCurrentPosition();
-            robot.frontLeft.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
-            robot.backRight.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
-            robot.frontRight.setTargetPosition((int)(inches*COUNTS_PER_INCH));
-            robot.backLeft.setTargetPosition((int)(inches*COUNTS_PER_INCH));
+            robot.frontLeft.setTargetPosition((int)(inches*COUNTS_PER_INCH));
+            robot.backRight.setTargetPosition((int)(inches*COUNTS_PER_INCH));
+            robot.frontRight.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+            robot.backLeft.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+//            telemetry.addLine(robot.frontLeft.getTargetPosition()+" <- TARGET");
+//            telemetry.addLine(robot.frontLeft.getCurrentPosition()+" <- Current");
+//            telemetry.update();
+//            Thread.sleep(2000);
             double currentPosInches;
             //power = 0.9;
             robot.changeSpeed(power);
             if(inches>0) {
+                while (robot.frontRight.getTargetPosition()<robot.frontRight.getCurrentPosition()||
+                        robot.frontLeft.getTargetPosition()>robot.frontLeft.getCurrentPosition()||
+                        robot.backRight.getTargetPosition()>robot.backRight.getCurrentPosition()||
+                        robot.backLeft.getTargetPosition()<robot.backLeft.getCurrentPosition()) {
+                    telemetry.addData("Correction", correction);
+                    telemetry.addLine(robot.frontLeft.getCurrentPosition()+" <- Current");
+                    telemetry.update();
+                    correction = pidDrive.performPID(getAngle());
+                    currentPosInches = ((robot.frontRight.getCurrentPosition() - startPos1) / COUNTS_PER_INCH);
+                    power = function.getPowerAt(currentPosInches, inches, pow, "strafe")*1.1;
+                    robot.frontLeft.setPower((power + correction));
+                    robot.backRight.setPower((power - correction));
+                    robot.frontRight.setPower(-(power + correction));
+                    robot.backLeft.setPower(-(power - correction));             //STRAFE
+                }
+            }
+            else{
                 while (robot.frontRight.getTargetPosition()>robot.frontRight.getCurrentPosition()||
                         robot.frontLeft.getTargetPosition()<robot.frontLeft.getCurrentPosition()||
                         robot.backRight.getTargetPosition()<robot.backRight.getCurrentPosition()||
@@ -499,28 +536,12 @@ public class RightRed extends LinearOpMode
                     telemetry.addData("Correction", correction);
                     telemetry.update();
                     correction = pidDrive.performPID(getAngle());
-                    currentPosInches = ((robot.frontRight.getCurrentPosition() - startPos1) / COUNTS_PER_INCH);
-                    power = function.getPowerAt(currentPosInches, inches, pow, "strafe");
-                    robot.frontLeft.setPower(-(power + correction));
-                    robot.backRight.setPower(-(power - correction));
-                    robot.frontRight.setPower((power + correction));
-                    robot.backLeft.setPower((power - correction));             //STRAFE
-                }
-            }
-            else{
-                while (robot.frontRight.getTargetPosition()<robot.frontRight.getCurrentPosition()||
-                        robot.frontLeft.getTargetPosition()>robot.frontLeft.getCurrentPosition()||
-                        robot.backRight.getTargetPosition()>robot.backRight.getCurrentPosition()||
-                        robot.backLeft.getTargetPosition()<robot.backLeft.getCurrentPosition()) {
-                    telemetry.addData("Correction", correction);
-                    telemetry.update();
-                    correction = pidDrive.performPID(getAngle());
                     currentPosInches = ((robot.frontRight.getCurrentPosition() - startPos1) / COUNTS_PER_INCH * -1);
-                    power = -function.getPowerAt(currentPosInches, -inches, pow, "strafe");
-                    robot.frontLeft.setPower(-(power + correction));
-                    robot.backRight.setPower(-(power - correction));
-                    robot.frontRight.setPower((power + correction));
-                    robot.backLeft.setPower((power - correction));             //STRAFE
+                    power = -function.getPowerAt(currentPosInches, -inches, pow, "strafe")*1.1;
+                    robot.frontLeft.setPower((power + correction));
+                    robot.backRight.setPower((power - correction));
+                    robot.frontRight.setPower(-(power + correction));
+                    robot.backLeft.setPower(-(power - correction));             //STRAFE
                 }
             }
             robot.changeSpeed(0);
@@ -581,23 +602,23 @@ public class RightRed extends LinearOpMode
         // We have to process the angle because the imu works in euler angles so the Z axis is
         // returned as 0 to +180 or 0 to -180 rolling back to -179 or +179 when rotation passes
         // 180 degrees. We detect this transition and track the total cumulative angle of rotation.
-        //Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        //double deltaAngle = angles.firstAngle - lastAngles.firstAngle;
+        Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        double deltaAngle = angles.firstAngle - lastAngles.firstAngle;
 
-        //if (deltaAngle < -180)
-        //    deltaAngle += 360;
-        //else if (deltaAngle > 180)
-        //    deltaAngle -= 360;
+        if (deltaAngle < -180)
+            deltaAngle += 360;
+        else if (deltaAngle > 180)
+            deltaAngle -= 360;
 
-        //globalAngle += deltaAngle;
+        globalAngle += deltaAngle;
 
-        //lastAngles = angles;
+        lastAngles = angles;
 
         return globalAngle;
     }
     private void resetAngle()
     {
-        //lastAngles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        lastAngles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         globalAngle = 0;
     }
