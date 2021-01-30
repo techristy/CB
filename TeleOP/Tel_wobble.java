@@ -183,7 +183,7 @@ public class  Tel_wobble extends LinearOpMode {
                 //shooter.setPower(1) ;
             }
             //else{shooter.setPower(0);}
-            intake.setPower(gamepad2.left_stick_x);
+            intake.setPower(gamepad2.left_stick_x*0.9);
             if(gamepad2.left_bumper){
                 shooter.setPower(1);
             }
@@ -199,7 +199,7 @@ public class  Tel_wobble extends LinearOpMode {
                 shooterServo.setPosition(1);
             }
             else{}
-           //////////////////////////////////////////////////////////////
+            //////////////////////////////////////////////////////////////
 
             /** Strafing */
 
@@ -214,7 +214,7 @@ public class  Tel_wobble extends LinearOpMode {
 
 
 
-            liftMotor.setPower((0.6 * gamepad2.right_stick_y) - gamepad2.left_trigger + gamepad2.right_trigger - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
+            liftMotor.setPower((0.3 * gamepad2.right_stick_y) - gamepad2.left_trigger + gamepad2.right_trigger - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad2.dpad_up ? 1 : 0)) + (0.3 * (gamepad2.dpad_down ? 1 : 0)));
             /**Shooter*/
             if(gamepad2.x){
