@@ -107,7 +107,7 @@ public class  Tel_wobble extends LinearOpMode {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //@Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode(){
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         /////
@@ -179,19 +179,15 @@ public class  Tel_wobble extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            if(gamepad2.left_bumper){
-                //shooter.setPower(1) ;
+            if(gamepad2.right_bumper){
+                intake.setPower(0.9) ;
             }
-            //else{shooter.setPower(0);}
-            intake.setPower(gamepad2.left_stick_x*0.9);
+            else{intake.setPower(0);}
+            //intake.setPower(gamepad2.left_stick_x*0.9);
             if(gamepad2.left_bumper){
                 shooter.setPower(1);
             }
-            else if(gamepad2.right_bumper){
-                shooter.setPower(-1);
-            }
             else{shooter.setPower(0);}
-
             if(gamepad2.a){
                 shooterServo.setPosition(0);
             }
@@ -203,14 +199,15 @@ public class  Tel_wobble extends LinearOpMode {
 
             /** Strafing */
 
-            frontLeft.setPower(-((0.6 * gamepad1.left_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            frontLeft.setPower(-((1 * gamepad1.left_stick_y) + 2*gamepad1.left_trigger - 2*gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
-            frontRight.setPower(-((0.6 * gamepad1.right_stick_y) - gamepad1.left_trigger + gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            frontRight.setPower(-((1 * gamepad1.right_stick_y) - 2*gamepad1.left_trigger + 2*gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
-            backLeft.setPower(-((0.6 * gamepad1.left_stick_y) - gamepad1.left_trigger + gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            backLeft.setPower(-((1 * gamepad1.left_stick_y) - 0.6*gamepad1.left_trigger + 0.6*gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
-            backRight.setPower(-((0.6 * gamepad1.right_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            backRight.setPower(-((1 * gamepad1.right_stick_y) + 0.6*gamepad1.left_trigger - 0.6*gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
+
 
 
 
@@ -223,7 +220,6 @@ public class  Tel_wobble extends LinearOpMode {
             else if(gamepad2.y){
                 gripServo.setPosition(0.9);
             }
-
 
             liftMotor.setPower((0.6 * gamepad2.right_stick_y) - gamepad2.left_trigger + gamepad2.right_trigger - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad2.dpad_up ? 1 : 0)) + (0.3 * (gamepad2.dpad_down ? 1 : 0)));

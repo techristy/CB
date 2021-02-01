@@ -59,7 +59,7 @@ import com.vuforia.CameraDevice;
 
 @TeleOp(name="13353TeleOP", group="Linear Opmode")
 //@Disabled
-public class Tel extends LinearOpMode {
+public class Tel11212020 extends LinearOpMode {
     public static int convertBoolean(boolean x){
         if(x){
             return 1;
