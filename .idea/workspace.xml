@@ -22,7 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="Autonomous Updates 1/17/21">
+    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="Autonomous Update 1/17/21">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +37,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1lcitEU51WBbgICVsofJFTgC0Hu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -50,20 +49,21 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Autonomous" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Autonomous/GoBuilda" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\barat\StudioProjects\CB\Autonomous\GoBuilda" />
       <recent name="C:\Users\barat\StudioProjects\CB\Autonomous" />
       <recent name="C:\Users\barat\StudioProjects\CB\TeleOP" />
       <recent name="C:\Users\Joel\StudioProjects\CB" />
       <recent name="C:\Users\Joel\StudioProjects\CB\TestDirectory" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -147,7 +147,105 @@
       <option name="project" value="LOCAL" />
       <updated>1610900797507</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Autonomous Updates 1/17/21">
+      <created>1610901786707</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1610901786707</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Autonomous Updates 1/17/21">
+      <created>1610901848856</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1610901848856</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Autonomous Update 1/17/21">
+      <created>1610901945152</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1610901945152</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Autonomous Update 1/17/21">
+      <created>1610902480703</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1610902480703</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Autonomous Update 1/17/21">
+      <created>1610903016069</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1610903016069</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Autonomous Update 1/17/21">
+      <created>1610903614486</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1610903614486</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Autonomous Update 1/17/21">
+      <created>1610998884260</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1610998884260</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Autonomous Update 1/17/21">
+      <created>1611163339720</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1611163339720</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Autonomous Update 1/17/21">
+      <created>1611419922003</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1611419922004</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Autonomous Update 1/17/21">
+      <created>1611426007978</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1611426007978</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Autonomous Update 1/17/21">
+      <created>1611961905510</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1611961905511</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Autonomous Update 1/17/21">
+      <created>1612016782991</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1612016782991</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Autonomous Update 1/17/21">
+      <created>1612121477821</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1612121477821</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Autonomous Update 1/17/21">
+      <created>1612121508442</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1612121508442</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -168,34 +266,35 @@
     <MESSAGE value="Initial TeleOp" />
     <MESSAGE value="New updates" />
     <MESSAGE value="Autonomous Updates 1/17/21" />
-    <option name="LAST_COMMIT_MESSAGE" value="Autonomous Updates 1/17/21" />
+    <MESSAGE value="Autonomous Update 1/17/21" />
+    <option name="LAST_COMMIT_MESSAGE" value="Autonomous Update 1/17/21" />
   </component>
   <component name="WindowStateProjectService">
     <state x="696" y="17" key="#Project_Structure" timestamp="1608998139612">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="696" y="17" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1608998139612" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1610291467744">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1612563003765">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1610291467744" />
-    <state x="147" y="65" key="MergeDialog" timestamp="1610900044871">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1612563003765" />
+    <state x="147" y="65" key="MergeDialog" timestamp="1612197520368">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1610900044871" />
-    <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1610900044877">
+    <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1612197520368" />
+    <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1610998916999">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1610900044877" />
-    <state x="607" y="265" key="Vcs.Push.Dialog.v2" timestamp="1610900809380">
+    <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1610998916999" />
+    <state x="607" y="265" key="Vcs.Push.Dialog.v2" timestamp="1612121520401">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="607" y="265" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1610900809380" />
+    <state x="607" y="265" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1612121520401" />
     <state x="759" y="356" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609084111089" />
-    <state x="665" y="425" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1610816933567">
+    <state x="665" y="425" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1612197513508">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="665" y="425" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1610816933567" />
+    <state x="665" y="425" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1612197513508" />
     <state x="831" y="537" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609085604751" />
   </component>
 </project>
