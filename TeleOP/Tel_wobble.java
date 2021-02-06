@@ -185,7 +185,7 @@ public class  Tel_wobble extends LinearOpMode {
             else{intake.setPower(0);}
             //intake.setPower(gamepad2.left_stick_x*0.9);
             if(gamepad2.left_bumper){
-                shooter.setPower(1);
+                shooter.setPower(0.8);
             }
             else{shooter.setPower(0);}
             if(gamepad2.a){
