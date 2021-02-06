@@ -199,9 +199,9 @@ public class  Tel_wobble extends LinearOpMode {
 
             /** Strafing */
 
-            frontLeft.setPower(-((1 * gamepad1.left_stick_y) + 2*gamepad1.left_trigger - 2*gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            frontLeft.setPower(-((1 * gamepad1.left_stick_y) + 3*gamepad1.left_trigger - 3*gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
-            frontRight.setPower(-((1 * gamepad1.right_stick_y) - 2*gamepad1.left_trigger + 2*gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            frontRight.setPower(-((1 * gamepad1.right_stick_y) - 3*gamepad1.left_trigger + 3*gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
             backLeft.setPower(-((1 * gamepad1.left_stick_y) - 0.6*gamepad1.left_trigger + 0.6*gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
