@@ -23,7 +23,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="Autonomous Update 1/17/21">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TeleOP/Tel_wobble.java" beforeDir="false" afterPath="$PROJECT_DIR$/TeleOP/Tel_wobble.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,21 +49,21 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Autonomous" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Autonomous/Competition" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\barat\StudioProjects\CB\Autonomous\Competition" />
       <recent name="C:\Users\barat\StudioProjects\CB\Autonomous" />
       <recent name="C:\Users\barat\StudioProjects\CB\TeleOP" />
       <recent name="C:\Users\barat\StudioProjects\CB\Autonomous\GoBuilda" />
       <recent name="C:\Users\Joel\StudioProjects\CB" />
-      <recent name="C:\Users\Joel\StudioProjects\CB\TestDirectory" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -273,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612724991365</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Autonomous Update 1/17/21">
+      <created>1613173472055</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1613173472055</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
