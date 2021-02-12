@@ -103,7 +103,39 @@ public class RightRed extends LinearOpMode
     //for 90 degrees
     //bigger turn = 26.5
     //smaller turn = 21.6
+    private VuforiaLocalizer vuforia;
+    private TFObjectDetector tfod;
+    String VUFORIA_KEY =
+            "  ARGKFNf/////AAABmeWmTIKr70aQrGH7lC6M8xBPdcMfnaNjD/dopWNwdsWuQbrZLFQZZBr/eFBlpHuykY0IY4f9Y34OVFaL4NRxmFd4ghxNkwK3Cjl/4Jo6bf/v+ovD7Tqdf8cT0A3McQF2rxOPE8fsmaC2TfCr8nZquqbbaTZT7bxtuvi8skuLfHg0BNRGaKtEYyPaJ+wdvAcJZ8+2rZ6q+77Ooh2teMYGmJRe+KDD8LmIMn5Jh/r/Lbm9WqjmxuSV6NxwAwpqTPydgJAE/19fXRVbC4+vGWAiiAxd/UIrLxDtgwekkiudCLSa1r1Y8XjtaTeUUWYXl7+iAxkAOX3ZYa84fFrPGnFvYdhjnIuRGo4AgL6dvb/pQEaK ";
+    private void initVuforia() {
+        /*
+         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
+x         */
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+        parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
+
+        //  Instantiate the Vuforia engine
+        vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+        // Loading trackables is not necessary for the TensorFlow Object Detection engine.
+    }
+
+    /**
+     * Initialize the TensorFlow Object Detection engine.
+     */
+    private void initTfod() {
+        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        tfodParameters.minResultConfidence = 0.8f;
+        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
+
+        //if ()
+
+    }
     @Override
     public void runOpMode() throws InterruptedException{
 
@@ -147,26 +179,68 @@ public class RightRed extends LinearOpMode
         telemetry.addData("Mode", "waiting for start");
         //telemetry.addData("imu calib status", imu.getCalibrationStatus().toString());
         telemetry.update();
-        VuforiaLocalizer.Parameters vparameters = new VuforiaLocalizer.Parameters();
-        String VUFORIA_KEY =
-                "  ARGKFNf/////AAABmeWmTIKr70aQrGH7lC6M8xBPdcMfnaNjD/dopWNwdsWuQbrZLFQZZBr/eFBlpHuykY0IY4f9Y34OVFaL4NRxmFd4ghxNkwK3Cjl/4Jo6bf/v+ovD7Tqdf8cT0A3McQF2rxOPE8fsmaC2TfCr8nZquqbbaTZT7bxtuvi8skuLfHg0BNRGaKtEYyPaJ+wdvAcJZ8+2rZ6q+77Ooh2teMYGmJRe+KDD8LmIMn5Jh/r/Lbm9WqjmxuSV6NxwAwpqTPydgJAE/19fXRVbC4+vGWAiiAxd/UIrLxDtgwekkiudCLSa1r1Y8XjtaTeUUWYXl7+iAxkAOX3ZYa84fFrPGnFvYdhjnIuRGo4AgL6dvb/pQEaK ";
+//        VuforiaLocalizer.Parameters vparameters = new VuforiaLocalizer.Parameters();
+//        String VUFORIA_KEY =
+//                "  ARGKFNf/////AAABmeWmTIKr70aQrGH7lC6M8xBPdcMfnaNjD/dopWNwdsWuQbrZLFQZZBr/eFBlpHuykY0IY4f9Y34OVFaL4NRxmFd4ghxNkwK3Cjl/4Jo6bf/v+ovD7Tqdf8cT0A3McQF2rxOPE8fsmaC2TfCr8nZquqbbaTZT7bxtuvi8skuLfHg0BNRGaKtEYyPaJ+wdvAcJZ8+2rZ6q+77Ooh2teMYGmJRe+KDD8LmIMn5Jh/r/Lbm9WqjmxuSV6NxwAwpqTPydgJAE/19fXRVbC4+vGWAiiAxd/UIrLxDtgwekkiudCLSa1r1Y8XjtaTeUUWYXl7+iAxkAOX3ZYa84fFrPGnFvYdhjnIuRGo4AgL6dvb/pQEaK ";
 
-        vparameters.vuforiaLicenseKey = VUFORIA_KEY;
-        vparameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
-        VuforiaLocalizer vuforia = null;
-        //  Instantiate the Vuforia engine
-        vuforia = ClassFactory.getInstance().createVuforia(vparameters);
-        TFObjectDetector tfod;
-        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        tfodParameters.minResultConfidence = 0.8f;
-        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
-        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
+//        vparameters.vuforiaLicenseKey = VUFORIA_KEY;
+//        vparameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
+//        VuforiaLocalizer vuforia = null;
+          //Instantiate the Vuforia engine
+//        vuforia = ClassFactory.getInstance().createVuforia(vparameters);
+//        TFObjectDetector tfod;
+//        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+//                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+//        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+//        tfodParameters.minResultConfidence = 0.8f;
+       //tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+//        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
         //Thread.sleep(1000);
+        initVuforia();
+        initTfod();
+
+        tfod.activate();
+        tfod.setZoom(3, 1.78);
+
+        while (!opModeIsActive()) {
+            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+
+            if (updatedRecognitions != null) {
+                telemetry.addData("# Object Detected", updatedRecognitions.size());
+                // step through the list of recognitions and display boundary info.
+                int i = 0;
+                for (Recognition recognition : updatedRecognitions) {
+                    telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                    telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+                            recognition.getLeft(), recognition.getTop());
+                    telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+                            recognition.getRight(), recognition.getBottom());
+                    if (recognition.getLabel().equals("Single")) {
+                        valZero = 0;
+                        valSingle = 1;
+                        valQUAD = 0;
+                    } else if (recognition.getLabel().equals(("Quad"))) {
+                        valZero = 0;
+                        valSingle = 0;
+                        valQUAD = 1;
+                    } else {
+                        valZero = 1;
+                        valSingle = 0;
+                        valQUAD = 0;
+                    }
+                }
+                telemetry.update();
+            }
+        }
+
+
+
+
+
+        robot.wobbleServo.setPosition(-1.0);
         waitForStart();
 
-        //encoderDrive(30, "drive");
+//        encoderDrive(30, "drive");
 //        Thread.sleep(1000);
 //        encoderDrive(-5,1.0,"strafe");
 //        encoderDrive(-66,0.9,"drive");
@@ -181,49 +255,103 @@ public class RightRed extends LinearOpMode
 
         //   encoderDrive(-10,0.9,"drive");
         int[] values = {valQUAD,valSingle,valZero};
-        //webcam.closeCameraDevice();
-        if(values[0]==0){
-            teleUpdate("QUAD","");
-            navigation("c");
-            encoderDrive(500000,0.5,"strafe");
-            halfTurn("counterclockwise");
 
-            robot.wobbleMotor.setPower(4000);
-            robot.wobbleMotor.setPower(0);
-            robot.wobbleServo.setPosition(0.1);
-            encoderDrive(50,0.9,"drive");
+        teleUpdate(valQUAD + " <q    " + valSingle + " <s    " + valZero, "");
+        Thread.sleep(3000);
+
+        //webcam.closeCameraDevice();
+        if(values[0]==1){
+            teleUpdate("QUAD","");
+            Thread.sleep(2000);
+            //navigation("c");
+            //encoderDrive(-3,0.5,"strafe");
+            //encoderDrive(5,1.0,"strafe");
+            encoderDrive(110,1.0,"drive");
+            fullTurn("clockwise");
+            encoderDrive(-15,1.0,"drive");
+            encoderWobble(-14,0.4);
+            robot.wobbleServo.setPosition(1.0);
+            Thread.sleep(300);
+            encoderWobble(14,0.4);
+            robot.wobbleServo.setPosition(-1.0);
+            encoderDrive(70,1.0,"drive");
+            semiTurn("counterclockwise",5);
+            robot.shooterMotor.setPower(0.7);
+            Thread.sleep(2000);
+            robot.shooterServo.setPosition(1);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(0);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(1);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(0);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(1);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(0);
+            Thread.sleep(500);
+            robot.shooterMotor.setPower(0);
+            encoderDrive(-20,1,"drive");
 // get ready to shoot
         }
-        else if(values[1]==0){
+        else if(values[1]==1){
             teleUpdate("SINGLE","");
-            navigation("b");
-            encoderDrive(-75,0.5,"drive");
-            halfTurn("counterclockwise");
-            robot.wobbleMotor.setPower(4000);
-            robot.wobbleMotor.setPower(0);
-            robot.wobbleServo.setPosition(0.1);
-            halfTurn("clockwise");
-            encoderDrive(25,0.9,"drive");
+            Thread.sleep(2000);
+//            navigation("b");
+            encoderDrive(95,1,"drive");
+
+          //  encoderDrive(25,1,"drive");
             //get ready to shoot
+            encoderWobble(-14,0.4);
+            robot.wobbleServo.setPosition(1.0);
+            Thread.sleep(300);
+            encoderWobble(14,0.4);
+            robot.wobbleServo.setPosition(-1.0);
+
+//            encoderDrive(-10,1.0,"strafe");
+            encoderDrive(-5,1.0,"strafe");
+            fullTurn("clockwise");
+            encoderDrive(35,1.0,"drive");
+            semiTurn("counterclockwise", 7);
+            robot.shooterServo.setPosition(1);
+            robot.shooterMotor.setPower(0.73);
+            Thread.sleep(2000);
+            robot.shooterServo.setPosition(1);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(0);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(1);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(0);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(1);
+            Thread.sleep(500);
+            robot.shooterServo.setPosition(0);
+            Thread.sleep(500);
+            robot.shooterMotor.setPower(0);
+            encoderDrive(-17,1,"drive");
         }
         else{
             teleUpdate("ZERO","");
-            //encoderDrive(20000,0.9,"drive"); used for testing
-           encoderDrive(-5,0.5,"strafe");
-//           encoderDrive(5,1.0,"strafe");
-           encoderDrive(72,1.0,"drive");
-            fullTurn("clockwise");
-            encoderWobble(-14,0.4);
-            Thread.sleep(10);
-            robot.wobbleServo.setPosition(1.0);
-            encoderDrive(5,1,"strafe");
-            Thread.sleep(100);
-            robot.wobbleServo.setPosition(-1.0);
-            encoderWobble(14,0.4);
-            encoderDrive(-7,1.0,"strafe");
-            encoderDrive(12,0.9,"drive");
+            Thread.sleep(2000);
+//         encoderDrive(-3,0.5,"strafe");
+         encoderDrive(-10,1,"strafe");
+           encoderDrive(90,1.0,"drive");
+//           encoderDrive(6,1,"strafe");
+           halfTurn("counterclockwise");
+           encoderWobble(-14,0.4);
+           Thread.sleep(10);
+           robot.wobbleServo.setPosition(1.0);
+           encoderDrive(-5,1,"strafe");
+//         Thread.sleep(100);
+           robot.wobbleServo.setPosition(-1.0);
+           encoderWobble(14,0.4);
+            encoderDrive(22,1.0,"drive");
+            halfTurn("counterclockwise");
+           encoderDrive(30,1.0,"drive");
 
-                robot.shooterMotor.setPower(0.9);
+
+                robot.shooterMotor.setPower(0.7);
                 Thread.sleep(2000);
                 robot.shooterServo.setPosition(1);
                 Thread.sleep(500);
@@ -238,7 +366,9 @@ public class RightRed extends LinearOpMode
                 robot.shooterServo.setPosition(0);
                 Thread.sleep(500);
                 robot.shooterMotor.setPower(0);
-            encoderDrive(7,0.9,"drive");
+            encoderDrive(-17,1,"drive");
+
+
 
 //get ready to shoot
         }
@@ -246,6 +376,28 @@ public class RightRed extends LinearOpMode
         tfod.shutdown();
     }
 
+    public void semiTurn(String type, int angle) {
+        resetAngle();
+        if (type.equals("counterclockwise")) {
+            long time = System.currentTimeMillis();
+            while (getAngle() <= angle & (System.currentTimeMillis() < (time + 6000))) {
+                power = (.75 * 2 * 0.684 / 5.063) * (-Math.pow((((getAngle()) + 2.9) / 37.4), 2) + 4.5 * ((getAngle() + 2.9) / 37.4)) + 0.159;
+                telemetry.addLine("power: " + power);
+                telemetry.addLine("angle: " + getAngle());
+                telemetry.update();
+                robot.frontLeft.setPower(power);
+                robot.frontRight.setPower(-power);
+                robot.backRight.setPower(-power);
+                robot.backLeft.setPower(power);
+            }
+            robot.frontLeft.setPower(0);
+            robot.frontRight.setPower(0);
+            robot.backRight.setPower(0);
+            robot.backLeft.setPower(0);
+        }
+        robot.changeMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.changeMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
     public void blockServoControlLeft(boolean control){
         if(control){
 
@@ -269,89 +421,11 @@ public class RightRed extends LinearOpMode
 
     }
 
-    public void navigation(String type) throws InterruptedException{
-
-
-        if(type.equals("a")) {
-//            encoderDrive(1,0.5,"strafe");
-//            encoderDrive(7,0.9,"drive");
-//            halfTurn("clockwise");
-//            robot.wobbleMotor.setPower(1000);
-//            robot.wobbleMotor.setPower(0);
-//            robot.wobbleServo.setPosition(0.1);
-            /*blockServoControlRight(true);
-            Thread.sleep(333);
-            encoderDrive(-1,  0.9, "drive");
-            halfTurn("clockwise");
-            encoderDrive(41,  1, "drive");
-            blockServoControlRight(false);
-            encoderDrive(-64, 1, "drive");
-            halfTurn("counterclockwise");
-            encoderDrive(5,  0.9, "drive");
-            blockServoControlRight(true);
-            Thread.sleep(300);
-            encoderDrive(-5.5,  0.9, "drive");
-            halfTurn("clockwise");
-            encoderDrive(65, 1, "drive");
-            blockServoControlRight(false);
-            encoderDrive(-11,  0.7, "drive");
-            */
-        }
-
-        if(type.equals("b")) {
-            //encoderDrive(27,0.9,"drive");
-            //encoderDrive(3,0.9,"strafe");
-            /*blockServoControlRight(true);
-            Thread.sleep(333);
-            encoderDrive(-1,  1.2, "drive");
-            halfTurn("clockwise");
-            encoderDrive(50,  1, "drive");
-            blockServoControlRight(false);
-            encoderDrive(-61.5, 1, "drive");
-            halfTurn("counterclockwise");
-            encoderDrive(6.5,  0.9, "drive");
-            blockServoControlLeft(true);
-            Thread.sleep(300);
-            encoderDrive(-5.5,  0.9, "drive");
-            halfTurn("clockwise");
-            encoderDrive(65, 1, "drive");
-            blockServoControlLeft(false);
-            encoderDrive(-11,  0.7, "drive");
-            encoderDrive(4,0.8,"strafe");
-            */
-        }
-
-        if(type.equals("c")) {
-            //encoderDrive(28,0.9,"drive");
-            //encoderDrive(12,0.9,"strafe");
-            /*blockServoControlRight(true);
-            Thread.sleep(333);
-            encoderDrive(-1,  1.2, "drive");
-            halfTurn("clockwise");
-            encoderDrive(57,  1, "drive");
-            blockServoControlRight(false);
-            encoderDrive(-60, 1, "drive");
-            halfTurn("counterclockwise");
-            encoderDrive(7.4,1,"strafe");
-            encoderDrive(2,  0.9, "drive");
-            blockServoControlLeft(true);
-            Thread.sleep(300);
-            encoderDrive(-4.5,  0.9, "drive");
-            halfTurn("clockwise");
-            encoderDrive(74, 1, "drive");
-            blockServoControlLeft(false);
-            encoderDrive(-15,  0.8, "drive");
-            encoderDrive(4,0.8,"strafe");
-            */
-        }
-    }
-
-
     public void fullTurn(String type){
         resetAngle();
         if(type.equals("counterclockwise")){
             long time = System.currentTimeMillis();
-            while (getAngle() <= 82 & (System.currentTimeMillis()<(time+6000))) {
+            while ((getAngle() <= 82 & (System.currentTimeMillis()<(time+6000))) && opModeIsActive()) {
                 power = (.75*2*0.684/5.063) * (-Math.pow((((getAngle())+2.9)/37.4),2) + 4.5*((getAngle()+2.9)/37.4)) + 0.159;
                 telemetry.addLine("power: "+power);
                 telemetry.addLine("angle: "+getAngle());
@@ -552,6 +626,74 @@ public class RightRed extends LinearOpMode
     }
 
 
+
+
+    public void encoderDriveStrafe(double inches, double pow) throws InterruptedException {
+        /////LEFT IS POSITIVE
+            pidDrive.setSetpoint(0);
+            pidDrive.setOutputRange(0, power);
+            pidDrive.setInputRange(-90, 90);
+            pidDrive.enable();
+            resetAngle();
+
+            int startPos1 = robot.frontLeft.getCurrentPosition();
+            int startPos2 = robot.backLeft.getCurrentPosition();
+            int startPos3 = robot.frontRight.getCurrentPosition();
+            int startPos4 = robot.backRight.getCurrentPosition();
+            robot.frontLeft.setTargetPosition((int)(inches*COUNTS_PER_INCH));
+            robot.backRight.setTargetPosition((int)(inches*COUNTS_PER_INCH));
+            robot.frontRight.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+            robot.backLeft.setTargetPosition((int)(-inches*COUNTS_PER_INCH));
+//            telemetry.addLine(robot.frontLeft.getTargetPosition()+" <- TARGET");
+//            telemetry.addLine(robot.frontLeft.getCurrentPosition()+" <- Current");
+//            telemetry.update();
+//            Thread.sleep(2000);
+            double currentPosInches;
+            //power = 0.9;
+            robot.changeSpeed(power);
+            if(inches>0) {
+                while (robot.frontRight.getTargetPosition()<robot.frontRight.getCurrentPosition()||
+                        robot.frontLeft.getTargetPosition()>robot.frontLeft.getCurrentPosition()||
+                        robot.backRight.getTargetPosition()>robot.backRight.getCurrentPosition()||
+                        robot.backLeft.getTargetPosition()<robot.backLeft.getCurrentPosition()) {
+                    telemetry.addData("Correction", correction);
+                    telemetry.addLine(robot.frontLeft.getCurrentPosition()+" <- Current");
+                    telemetry.update();
+                    correction = pidDrive.performPID(getAngle());
+                    currentPosInches = ((robot.frontRight.getCurrentPosition() - startPos1) / COUNTS_PER_INCH);
+                    power = pow;
+                    robot.frontLeft.setPower((power + correction));
+                    robot.backRight.setPower((power - correction));
+                    robot.frontRight.setPower(-(power + correction));
+                    robot.backLeft.setPower(-(power - correction));             //STRAFE
+                }
+            }
+            else{
+                while (robot.frontRight.getTargetPosition()>robot.frontRight.getCurrentPosition()||
+                        robot.frontLeft.getTargetPosition()<robot.frontLeft.getCurrentPosition()||
+                        robot.backRight.getTargetPosition()<robot.backRight.getCurrentPosition()||
+                        robot.backLeft.getTargetPosition()>robot.backLeft.getCurrentPosition()) {
+                    telemetry.addData("Correction", correction);
+                    telemetry.update();
+                    correction = pidDrive.performPID(getAngle());
+                    currentPosInches = ((robot.frontRight.getCurrentPosition() - startPos1) / COUNTS_PER_INCH * -1);
+                    power = -pow;
+                    robot.frontLeft.setPower((power + correction));
+                    robot.backRight.setPower((power - correction));
+                    robot.frontRight.setPower(-(power + correction));
+                    robot.backLeft.setPower(-(power - correction));             //STRAFE
+                }
+            }
+            robot.changeSpeed(0);
+
+        robot.changeMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.changeMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        Thread.sleep(100);
+    }
+
+
+
+
     public void encoderWobble(double inches, double pow) throws InterruptedException {
         robot.wobbleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.wobbleMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -565,7 +707,7 @@ public class RightRed extends LinearOpMode
             telemetry.update();
 //            Thread.sleep(3000);
         if(inches>0) {
-            while (robot.wobbleMotor.getTargetPosition() > robot.wobbleMotor.getCurrentPosition()) {
+            while ((robot.wobbleMotor.getTargetPosition() > robot.wobbleMotor.getCurrentPosition()) && opModeIsActive()) {
                 robot.wobbleMotor.setPower(pow);
                 telemetry.addLine(Integer.toString(robot.wobbleMotor.getTargetPosition()) + "<-target       current->" + Integer.toString(robot.wobbleMotor.getCurrentPosition()));
                 telemetry.update();
@@ -573,7 +715,7 @@ public class RightRed extends LinearOpMode
             robot.wobbleMotor.setPower(0);
         }
         else{
-            while (robot.wobbleMotor.getTargetPosition() < robot.wobbleMotor.getCurrentPosition()) {
+            while ((robot.wobbleMotor.getTargetPosition() < robot.wobbleMotor.getCurrentPosition()) && opModeIsActive()) {
                 robot.wobbleMotor.setPower(-pow);
                 telemetry.addLine(Integer.toString(robot.wobbleMotor.getTargetPosition()) + "<-target       current->" + Integer.toString(robot.wobbleMotor.getCurrentPosition()));
                 telemetry.update();

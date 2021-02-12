@@ -144,24 +144,26 @@ public class RightBlue extends LinearOpMode {
         }
         waitForStart();
 
-//        encoderDrive(-6, 1, "strafe");
+
         encoderDrive(-58, 1, "drive");
-        robot.shooterMotor.setPower(0.58);
+        robot.shooterMotor.setPower(0.60);
         Thread.sleep(2000);
         robot.shooterServo.setPosition(0);
         Thread.sleep(500);
         robot.shooterServo.setPosition(1);
-        robot.shooterMotor.setPower(0.65);
-        encoderDrive(4, 1, "strafe");
+        robot.shooterMotor.setPower(0.60);
+        semiTurn("clockwise");
         robot.shooterServo.setPosition(0);
         Thread.sleep(500);
         robot.shooterServo.setPosition(1);
-         encoderDrive(4, 1, "strafe");
+        //fullTurn("counterclockwise");
+        //fullTurn("clockwise");
+        semiTurn("clockwise");
         robot.shooterServo.setPosition(0);
         Thread.sleep(500);
         robot.shooterServo.setPosition(1);
         Thread.sleep(500);
-        encoderDrive(-8, 1, "drive");
+        encoderDrive(-12, 1, "drive");
         robot.shooterServo.setPosition(0);
 
     }
@@ -209,7 +211,7 @@ public class RightBlue extends LinearOpMode {
             long time = System.currentTimeMillis();
 
             while (getAngle() >= -180 && (System.currentTimeMillis() < (time + 3000))) {
-                power = (.75 * 2 * 0.684 / 5.063) * (-Math.pow((((-getAngle()) + 2.9) / 37.4), 2) + 4.5 * ((-getAngle() + 2.9) / 37.4)) + 0.159;
+                power = (.75 * 2 * 0.684 / 5.063) * (-Math.pow((((-getAngle()) + 3) / 37.4), 2) + 4.5 * ((-getAngle() + 3) / 37.4)) + 0.159;
                 telemetry.addLine("" + power);
                 telemetry.addLine("" + getAngle());
                 telemetry.update();
@@ -227,19 +229,19 @@ public class RightBlue extends LinearOpMode {
         robot.changeMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public void semiTurn(String type, int angle) {
+    public void semiTurn(String type) {
         resetAngle();
-        if (type.equals("counterclockwise")) {
+        if (type.equals("clockwise")) {
             long time = System.currentTimeMillis();
-            while (getAngle() <= angle & (System.currentTimeMillis() < (time + 6000))) {
-                power = (.75 * 2 * 0.684 / 5.063) * (-Math.pow((((getAngle()) + 2.9) / 37.4), 2) + 4.5 * ((getAngle() + 2.9) / 37.4)) + 0.159;
+            while (getAngle() <= 9 & (System.currentTimeMillis() < (time + 500))) {
+                power = (1 * 2 * 0.684 / 5.063) * (-Math.pow((((getAngle()) + 2.9) / 37.4), 2) + 4.5 * ((getAngle() + 2.9) / 37.4)) + 0.159;
                 telemetry.addLine("power: " + power);
                 telemetry.addLine("angle: " + getAngle());
                 telemetry.update();
-                robot.frontLeft.setPower(power);
-                robot.frontRight.setPower(-power);
-                robot.backRight.setPower(-power);
-                robot.backLeft.setPower(power);
+                robot.frontLeft.setPower(-power);
+                robot.frontRight.setPower(power);
+                robot.backRight.setPower(power);
+                robot.backLeft.setPower(-power);
             }
             robot.frontLeft.setPower(0);
             robot.frontRight.setPower(0);

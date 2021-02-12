@@ -30,6 +30,7 @@ package org.firstinspires.ftc.teamcode;
 
 import android.hardware.Camera;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -42,6 +43,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 import com.vuforia.CameraDevice;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 
 /**
@@ -101,6 +107,11 @@ public class  Tel_wobble extends LinearOpMode {
     boolean check = false;
     double i;
     boolean check2 = false;
+    BNO055IMU imu;
+    Orientation lastAngles = new Orientation();
+    double                  globalAngle, power = .50, correction, rotation;
+    PIDController           pidRotate, pidDrive;
+
 //    private Servo contArm_left = null;
 //    private Servo contArm_right = null;
 
@@ -108,6 +119,26 @@ public class  Tel_wobble extends LinearOpMode {
 
     //@Override
     public void runOpMode(){
+
+
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.mode                = BNO055IMU.SensorMode.IMU;
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.loggingEnabled      = false;
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        imu.initialize(parameters);
+        pidRotate = new PIDController(.003, .00003, 0);
+        pidDrive = new PIDController(.05, 0, 0);
+
+        telemetry.addData("Mode", "calibrating...");
+        telemetry.update();
+        while (!isStopRequested() && !imu.isGyroCalibrated())
+        {
+            sleep(50);
+            idle();
+        }
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         /////
@@ -176,9 +207,12 @@ public class  Tel_wobble extends LinearOpMode {
         waitForStart();
         long millis = System.currentTimeMillis();
         runtime.reset();
-
+        resetAngle();
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
+
+            telemetry.addData(getAngle()+"", "");
+            telemetry.update();
             if(gamepad2.right_bumper){
                 intake.setPower(0.9) ;
             }
@@ -186,6 +220,9 @@ public class  Tel_wobble extends LinearOpMode {
             //intake.setPower(gamepad2.left_stick_x*0.9);
             if(gamepad2.left_bumper){
                 shooter.setPower(0.8);
+            }
+            else if(gamepad2.left_trigger > 0.1){
+                shooter.setPower(0.65);
             }
             else{shooter.setPower(0);}
             if(gamepad2.a){
@@ -199,9 +236,9 @@ public class  Tel_wobble extends LinearOpMode {
 
             /** Strafing */
 
-            frontLeft.setPower(-((1 * gamepad1.left_stick_y) + 3*gamepad1.left_trigger - 3*gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            frontLeft.setPower(-((1 * gamepad1.left_stick_y) + 3*gamepad1.left_trigger - 3*gamepad1.right_trigger + (0.75 * (gamepad1.dpad_left ? 1 : 0)) - (0.75 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
-            frontRight.setPower(-((1 * gamepad1.right_stick_y) - 3*gamepad1.left_trigger + 3*gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            frontRight.setPower(-((1 * gamepad1.right_stick_y) - 3*gamepad1.left_trigger + 3*gamepad1.right_trigger - (0.75 * (gamepad1.dpad_left ? 1 : 0)) + (0.75 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
             backLeft.setPower(-((1 * gamepad1.left_stick_y) - 0.6*gamepad1.left_trigger + 0.6*gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0))));
@@ -211,8 +248,6 @@ public class  Tel_wobble extends LinearOpMode {
 
 
 
-            liftMotor.setPower((0.3 * gamepad2.right_stick_y) - gamepad2.left_trigger + gamepad2.right_trigger - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
-                    - (0.25 * (gamepad2.dpad_up ? 1 : 0)) + (0.3 * (gamepad2.dpad_down ? 1 : 0)));
             /**Shooter*/
             if(gamepad2.x){
                 gripServo.setPosition(0.1);
@@ -221,19 +256,47 @@ public class  Tel_wobble extends LinearOpMode {
                 gripServo.setPosition(0.9);
             }
 
-            liftMotor.setPower((0.6 * gamepad2.right_stick_y) - gamepad2.left_trigger + gamepad2.right_trigger - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
-                    - (0.25 * (gamepad2.dpad_up ? 1 : 0)) + (0.3 * (gamepad2.dpad_down ? 1 : 0)));
+            liftMotor.setPower((0.6 * gamepad2.right_stick_y) - (0.5 * (gamepad2.dpad_left ? 1 : 0)) + (0.5 * (gamepad2.dpad_right ? 1 : 0))
+                    - (0.4 * (gamepad2.dpad_up ? 1 : 0)) + (0.4 * (gamepad2.dpad_down ? 1 : 0)));
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             /** Show the elapsed game time and wheel power. */
 
-            telemetry.addData("Status", "Run Time: " + runtime.toString());
-            telemetry.addData("Motors", "left (%.2f), right (%.2f)", frontLeft.getPower(), frontRight.getPower());
-            telemetry.update();
+            //telemetry.addData("Status", "Run Time: " + runtime.toString());
+            //telemetry.addData("Motors", "left (%.2f), right (%.2f)", frontLeft.getPower(), frontRight.getPower());
+            //telemetry.update();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         }
+    }
+
+    private double getAngle()
+    {
+        // We experimentally determined the Z axis is the axis we want to use for heading angle.
+        // We have to process the angle because the imu works in euler angles so the Z axis is
+        // returned as 0 to +180 or 0 to -180 rolling back to -179 or +179 when rotation passes
+        // 180 degrees. We detect this transition and track the total cumulative angle of rotation.
+        Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        double deltaAngle = angles.firstAngle - lastAngles.firstAngle;
+
+        if (deltaAngle < -180)
+            deltaAngle += 360;
+        else if (deltaAngle > 180)
+            deltaAngle -= 360;
+
+        globalAngle += deltaAngle;
+
+        lastAngles = angles;
+
+        return globalAngle;
+    }
+
+    private void resetAngle()
+    {
+        lastAngles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+        globalAngle = 0;
     }
 }

@@ -143,20 +143,19 @@ public class LeftRed extends LinearOpMode {
 
         }
         waitForStart();
-semiTurn("counterclockwise",10 );
-        encoderDrive(-6, 1, "strafe");
         encoderDrive(-58, 1, "drive");
+        encoderDrive(4, 1, "strafe");
         robot.shooterMotor.setPower(0.58);
         Thread.sleep(2000);
         robot.shooterServo.setPosition(0);
         Thread.sleep(500);
         robot.shooterServo.setPosition(1);
         robot.shooterMotor.setPower(0.65);
-        semiTurn("counterclockwise",2);
+        semiTurn("counterclockwise",3);
         robot.shooterServo.setPosition(0);
         Thread.sleep(500);
         robot.shooterServo.setPosition(1);
-        semiTurn("counterclockwise",2);
+        semiTurn("counterclockwise",3);
         robot.shooterServo.setPosition(0);
         Thread.sleep(500);
         robot.shooterServo.setPosition(1);
