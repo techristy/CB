@@ -47,7 +47,7 @@ import static org.firstinspires.ftc.teamcode.ConceptTensorFlowObjectDetectionWeb
 
 @Autonomous(name="LeftBlue", group="Pushbot")
 
-public class LeftBlue extends LinearOpMode
+public class  LeftBlue extends LinearOpMode
 {
 
     private static int valQUAD = -1;
@@ -215,6 +215,7 @@ x         */
                             recognition.getLeft(), recognition.getTop());
                     telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                             recognition.getRight(), recognition.getBottom());
+                    telemetry.addData("list size ->>>>"+updatedRecognitions.size(),"");
                     if (recognition.getLabel().equals("Single")) {
                         valZero = 0;
                         valSingle = 1;
@@ -223,11 +224,12 @@ x         */
                         valZero = 0;
                         valSingle = 0;
                         valQUAD = 1;
-                    } else {
-                        valZero = 1;
-                        valSingle = 0;
-                        valQUAD = 0;
                     }
+                }
+                if (updatedRecognitions.size()==0){
+                    valZero = 1;
+                    valSingle = 0;
+                    valQUAD = 0;
                 }
                 telemetry.update();
             }
@@ -255,12 +257,22 @@ x         */
 
         //   encoderDrive(-10,0.9,"drive");
         int[] values = {valQUAD,valSingle,valZero};
+        teleUpdate("" +valQUAD + ",  "+valSingle + ",  " + valZero,"");
+        Thread.sleep(2000);
         //webcam.closeCameraDevice();
         if(values[0]==1){
             teleUpdate("QUAD","");
+            Thread.sleep(2000);
             //navigation("c");
             //encoderDrive(-3,0.5,"strafe");
             //encoderDrive(5,1.0,"strafe");
+
+
+
+
+
+
+
             encoderDrive(120,1.0,"drive");
             encoderWobble(-14,0.4);
             Thread.sleep(10);
@@ -287,10 +299,18 @@ x         */
             Thread.sleep(500);
             robot.shooterMotor.setPower(0);
             encoderDrive(-20,1,"drive");
+
+
+
+
 // get ready to shoot
         }
         else if(values[1]==1){
             teleUpdate("SINGLE","");
+            Thread.sleep(2000);
+
+
+
 //            navigation("b");
             encoderDrive(95,1,"drive");
             //get ready to shoot
@@ -305,7 +325,7 @@ x         */
             //encoderDrive(20,1.0,"strafe");
 //            fullTurn("clockwise");
             semiTurn("clockwise", 7);
-            robot.shooterMotor.setPower(0.7);
+            robot.shooterMotor.setPower(0.8);
             Thread.sleep(2000);
             robot.shooterServo.setPosition(0);
             Thread.sleep(500);
@@ -321,9 +341,17 @@ x         */
             Thread.sleep(500);
             robot.shooterMotor.setPower(0);
             encoderDrive(-15,1,"drive");
+
+
+
+
         }
         else{
             teleUpdate("ZERO","");
+            Thread.sleep(2000);
+
+
+
 
 //         encoderDrive(-3,0.5,"strafe");
 //         encoderDrive(5,1.0,"strafe");
@@ -335,7 +363,7 @@ x         */
 //         Thread.sleep(100);
             robot.wobbleServo.setPosition(-1.0);
             encoderWobble(14,0.4);
-            encoderDrive(-18,1.0,"strafe");
+            encoderDrive(-15,1.0,"strafe");
             encoderDrive(-17,1.0,"drive");
             fullTurn("clockwise");
             robot.shooterMotor.setPower(0.7);
@@ -354,6 +382,10 @@ x         */
             Thread.sleep(500);
             robot.shooterMotor.setPower(0);
             encoderDrive(-17,1,"drive");
+
+
+
+
 
 
 

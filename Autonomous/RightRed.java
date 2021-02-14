@@ -215,6 +215,7 @@ x         */
                             recognition.getLeft(), recognition.getTop());
                     telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                             recognition.getRight(), recognition.getBottom());
+                    telemetry.addData("list size ->>>>"+updatedRecognitions.size(),"");
                     if (recognition.getLabel().equals("Single")) {
                         valZero = 0;
                         valSingle = 1;
@@ -223,11 +224,17 @@ x         */
                         valZero = 0;
                         valSingle = 0;
                         valQUAD = 1;
-                    } else {
-                        valZero = 1;
-                        valSingle = 0;
-                        valQUAD = 0;
                     }
+                }
+                if (updatedRecognitions.size()==0){
+                    valZero = 1;
+                    valSingle = 0;
+                    valQUAD = 0;
+                }
+                else{
+                    valZero = 1;
+                    valSingle = 0;
+                    valQUAD = 0;
                 }
                 telemetry.update();
             }
@@ -256,13 +263,13 @@ x         */
         //   encoderDrive(-10,0.9,"drive");
         int[] values = {valQUAD,valSingle,valZero};
 
-        teleUpdate(valQUAD + " <q    " + valSingle + " <s    " + valZero, "");
-        Thread.sleep(3000);
+        //teleUpdate(valQUAD + " <q    " + valSingle + " <s    " + valZero, "");
+        //Thread.sleep(3000);
 
         //webcam.closeCameraDevice();
         if(values[0]==1){
             teleUpdate("QUAD","");
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
             //navigation("c");
             //encoderDrive(-3,0.5,"strafe");
             //encoderDrive(5,1.0,"strafe");
@@ -296,7 +303,7 @@ x         */
         }
         else if(values[1]==1){
             teleUpdate("SINGLE","");
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
 //            navigation("b");
             encoderDrive(95,1,"drive");
 
@@ -333,7 +340,7 @@ x         */
         }
         else{
             teleUpdate("ZERO","");
-            Thread.sleep(2000);
+            //Thread.sleep(2000);
 //         encoderDrive(-3,0.5,"strafe");
          encoderDrive(-10,1,"strafe");
            encoderDrive(90,1.0,"drive");

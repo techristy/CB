@@ -64,7 +64,7 @@ import com.vuforia.CameraDevice;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="TeleGoBuilda", group="Linear Opmode")
+@TeleOp(name="TeleGoBuilda - use this one", group="Linear Opmode")
 //@Disabled
 public class TelGoBuilda extends LinearOpMode {
     public static int convertBoolean(boolean x) {
@@ -238,11 +238,11 @@ public class TelGoBuilda extends LinearOpMode {
 
             frontLeft.setPower((0.6 * gamepad1.left_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0)));
-            frontRight.setPower((0.6 * gamepad1.right_stick_y) - gamepad1.left_trigger + gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            frontRight.setPower((0.6 * gamepad1.right_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0)));
             backLeft.setPower((0.6 * gamepad1.left_stick_y) - gamepad1.left_trigger + gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0)));
-            backRight.setPower((0.6 * gamepad1.right_stick_y) + gamepad1.left_trigger - gamepad1.right_trigger + (0.5 * (gamepad1.dpad_left ? 1 : 0)) - (0.5 * (gamepad1.dpad_right ? 1 : 0))
+            backRight.setPower((0.6 * gamepad1.right_stick_y) - gamepad1.left_trigger + gamepad1.right_trigger - (0.5 * (gamepad1.dpad_left ? 1 : 0)) + (0.5 * (gamepad1.dpad_right ? 1 : 0))
                     - (0.25 * (gamepad1.dpad_up ? 1 : 0)) + (0.3 * (gamepad1.dpad_down ? 1 : 0)));
             //shooter.setPower(0.5)
             //rampServo.setPosition();
@@ -251,49 +251,41 @@ public class TelGoBuilda extends LinearOpMode {
 //            for (int i = 0; i < 500000; i++) {
 
             // Intake Movement
-            intakeMotor.setPower(-1);
-            if (gamepad1.a) {
-                intakeMotor.setPower(1);
+            intakeMotor.setPower(0);
+            if (gamepad2.right_bumper) {
+                intakeMotor.setPower(-1);
             }
             //Shooter Movement
-            shooter.setPower(0.7);
-            if (gamepad2.a) {
+            shooter.setPower(0);
+            if (gamepad2.left_bumper) {
                 shooter.setPower(0.75);
-            }
-            if (gamepad2.b) {
-                shooter.setPower(0.65);
-            }
-            if (gamepad2.x) {
-                shooter.setPower(0.55);
-            }
-            if (gamepad2.y) {
-                shooter.setPower(0.0);
             }
 //            }
 
             //Wobble Motor//
-
+            wobbleMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             if (gamepad2.dpad_up) {
                 wobbleMotor.setPower(-0.4);
             } else if (gamepad2.dpad_down) {
                 wobbleMotor.setPower(0.4);
             } else {
                 wobbleMotor.setPower(0.0);
+
             }
 
             //Wobble Servo//
-            if (gamepad2.left_bumper) {
-                wobbleServo.setPosition(1);
+            if (gamepad2.x) {
+                wobbleServo.setPosition(0.5);
             }
-            if (gamepad2.right_bumper) {
-                wobbleServo.setPosition(-0.90);
+            if (gamepad2.y) {
+                wobbleServo.setPosition(0);
             }
 
             //Ramp Servo//
-            if (gamepad2.dpad_right) {
+            if (gamepad2.a) {
                 rampServo.setPosition(0.30);
             }
-            if (gamepad2.dpad_left) {
+            if (gamepad2.b) {
                 rampServo.setPosition(-0.100);
             }
 
