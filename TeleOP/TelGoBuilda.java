@@ -1,4 +1,4 @@
-//////testing purpose
+///////testing purpose
 package org.firstinspires.ftc.teamcode;
 
 /* Copyright (c) 2017 FIRST. All rights reserved.
@@ -284,7 +284,7 @@ public class TelGoBuilda extends LinearOpMode {
 
             //Ramp Servo//
             if (gamepad2.b) {
-                shooterServo.setPosition(0.43);
+                shooterServo.setPosition(0.52);
             }
             if (gamepad2.a) {
                 shooterServo.setPosition(0.8);

@@ -38,9 +38,9 @@ import org.openftc.easyopencv.OpenCvPipeline;
 */
 //import static org.firstinspires.ftc.teamcode.WebcamTest.VUFORIA_KEY;
 
-@Autonomous(name="RightRed - GB", group="Pushbot")
+@Autonomous(name="RightBlue - GB", group="Pushbot")
 
-public class RightRedGB extends LinearOpMode
+public class RightBlueGB extends LinearOpMode
 {
 
     private static int valQUAD = -1;
@@ -153,7 +153,7 @@ x         */
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parameters.loggingEnabled      = false;
-        robot.webcamServo.setPosition(0.18);
+        robot.webcamServo.setPosition(0.17);
         teleUpdate("WWWWWWWWWWWWWWWWWWWWWWWWWWWWW","");
         imu = hardwareMap.get(BNO055IMU.class, "imu 1");
         teleUpdate("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEee","");
@@ -167,8 +167,8 @@ x         */
         telemetry.update();
         while (!isStopRequested() && !imu.isGyroCalibrated())
         {
-                sleep(50);
-                idle();
+            sleep(50);
+            idle();
         }
         telemetry.addData("Mode", "waiting for start");
         //telemetry.addData("imu calib status", imu.getCalibrationStatus().toString());
@@ -180,14 +180,14 @@ x         */
 //        vparameters.vuforiaLicenseKey = VUFORIA_KEY;
 //        vparameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
 //        VuforiaLocalizer vuforia = null;
-          //Instantiate the Vuforia engine
+        //Instantiate the Vuforia engine
 //        vuforia = ClassFactory.getInstance().createVuforia(vparameters);
 //        TFObjectDetector tfod;
 //        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
 //                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
 //        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
 //        tfodParameters.minResultConfidence = 0.8f;
-       //tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        //tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
 //        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
         //Thread.sleep(1000);
         initVuforia();
@@ -205,12 +205,12 @@ x         */
                 // step through the list of recognitions and display boundary info.
                 int i = 0;
                 for (Recognition recognition : updatedRecognitions) {
-                    telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                    telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                            recognition.getLeft(), recognition.getTop());
-                    telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                            recognition.getRight(), recognition.getBottom());
-                    telemetry.addData("list size ->>>>"+updatedRecognitions.size(),"");
+//                    telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+//                    telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+//                            recognition.getLeft(), recognition.getTop());
+//                    telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+//                            recognition.getRight(), recognition.getBottom());
+//                    telemetry.addData("list size ->>>>"+updatedRecognitions.size(),"");
                     if (recognition.getLabel().equals("Single")) {
                         valZero = 0;
                         valSingle = 1;
@@ -264,36 +264,42 @@ x         */
         if(values[0]==1){
             teleUpdate("QUAD","");
 
+            encoderDrive(13,0.8,"drive");
+            fullTurn("clockwise");
+            semiTurn("counterclockwise",1.5);
 
-            encoderDrive(29,1.0,"drive");
+
+            robot.shooterMotor.setPower(0.72);
+            Thread.sleep(1600);
+            robot.shooterServo.setPosition(0.8);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.50);
+            semiTurn("clockwise",3);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.8);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.50);
+            semiTurn("clockwise",4.3);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.8);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.50);
+            Thread.sleep(400);
+            robot.shooterMotor.setPower(0);
+            robot.shooterServo.setPosition(0.54);
+
+            semiTurn("counterclockwise",4);
+            encoderDrive(-15.5,1,"drive");
+            encoderDrive(-5, 1, "strafe");
 //           encoderDrive(6,1,"strafe");
             encoderWobble(-7.5,0.6);
             Thread.sleep(10);
-            robot.wobbleServo.setPosition(0.5);
-            encoderDrive(4,1,"strafe");
-//         Thread.sleep(100);
+            robot.wobbleServo.setPosition(0.6);
+            Thread.sleep(300);
             robot.wobbleServo.setPosition(0);
             encoderWobble(7.5,0.6);
-            encoderDrive(-15,1.0,"drive");
-            semiTurn("counterclockwise", 200);
-
-
-            robot.shooterMotor.setPower(0.75);
-            Thread.sleep(1800);
-            robot.shooterServo.setPosition(0.8);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.52);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.8);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.52);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.8);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.52);
-            Thread.sleep(500);
-            robot.shooterMotor.setPower(0);
-            encoderDrive(-2.3,1,"drive");
+            encoderDrive(15, 1, "strafe");
+            encoderDrive(11, 1, "drive");
 
 // get ready to shoot
         }
@@ -301,38 +307,39 @@ x         */
             teleUpdate("SINGLE","");
             //Thread.sleep(2000);
 //            navigation("b");
-
-
-            encoderDrive(23,1.0,"drive");
-//           encoderDrive(6,1,"strafe");
+            encoderDrive(13,0.8,"drive");
             fullTurn("clockwise");
+            semiTurn("counterclockwise",1.5);
+
+            robot.shooterMotor.setPower(0.72);
+            Thread.sleep(1600);
+            robot.shooterServo.setPosition(0.8);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.50);
+            semiTurn("clockwise",3);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.8);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.50);
+            semiTurn("clockwise",4.3);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.8);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.50);
+            Thread.sleep(400);
+            robot.shooterMotor.setPower(0);
+            robot.shooterServo.setPosition(0.54);
+
+            semiTurn("counterclockwise",4);
+            encoderDrive(-10,0.8,"drive");
             encoderWobble(-7.5,0.6);
             Thread.sleep(10);
-            robot.wobbleServo.setPosition(0.5);
-            encoderDrive(2,1,"strafe");
-//         Thread.sleep(100);
+            robot.wobbleServo.setPosition(0.6);
+            Thread.sleep(300);
             robot.wobbleServo.setPosition(0);
             encoderWobble(7.5,0.6);
-            encoderDrive(8,1.0,"drive");
-            semiTurn("counterclockwise", 12.5);
-
-
-            robot.shooterMotor.setPower(0.75);
-            Thread.sleep(1800);
-            robot.shooterServo.setPosition(0.8);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.52);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.8);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.52);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.8);
-            Thread.sleep(500);
-            robot.shooterServo.setPosition(0.52);
-            Thread.sleep(500);
-            robot.shooterMotor.setPower(0);
-            encoderDrive(-2.3,1,"drive");
+            encoderDrive(6, 1, "strafe");
+            encoderDrive(5, 0.8, "drive");
 
         }
         else{
@@ -340,35 +347,44 @@ x         */
 
             //Thread.sleep(2000);
 //         encoderDrive(-3,0.5,"strafe");
-           encoderDrive(18,1.0,"drive");
+            encoderDrive(13,0.8,"drive");
+            fullTurn("clockwise");
+            semiTurn("counterclockwise",1.5);
+
+            robot.shooterMotor.setPower(0.72);
+            Thread.sleep(1600);
+            robot.shooterServo.setPosition(0.8);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.50);
+            semiTurn("clockwise",3);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.8);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.50);
+            semiTurn("clockwise",4.3);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.8);
+            Thread.sleep(400);
+            robot.shooterServo.setPosition(0.50);
+            Thread.sleep(400);
+            robot.shooterMotor.setPower(0);
+            robot.shooterServo.setPosition(0.54);
+
+            semiTurn("counterclockwise",4);
+            encoderDrive(-8.5,0.8,"drive");
+            halfTurn("counterclockwise");
 //           encoderDrive(6,1,"strafe");
+            encoderDrive(-8.5,0.8,"drive");
             encoderWobble(-7.5,0.6);
-           Thread.sleep(10);
-           robot.wobbleServo.setPosition(0.5);
-           encoderDrive(4,1,"strafe");
+            Thread.sleep(10);
+            robot.wobbleServo.setPosition(0.6);
+            encoderDrive(2,1.0,"strafe");
 //         Thread.sleep(100);
-           robot.wobbleServo.setPosition(0);
+            robot.wobbleServo.setPosition(0);
             encoderWobble(7.5,0.6);
-            encoderDrive(-4,1.0,"drive");
-            semiTurn("counterclockwise", 200);
+            encoderDrive(8,0.8,"drive");
+            encoderDrive(-6,1,"strafe");
 
-
-                robot.shooterMotor.setPower(0.75);
-                Thread.sleep(1800);
-                robot.shooterServo.setPosition(0.8);
-                Thread.sleep(500);
-                robot.shooterServo.setPosition(0.52);
-                Thread.sleep(500);
-                robot.shooterServo.setPosition(0.8);
-                Thread.sleep(500);
-                robot.shooterServo.setPosition(0.52);
-                Thread.sleep(500);
-                robot.shooterServo.setPosition(0.8);
-                Thread.sleep(500);
-                robot.shooterServo.setPosition(0.52);
-                Thread.sleep(500);
-                robot.shooterMotor.setPower(0);
-            encoderDrive(-2.3,1,"drive");
 
 
 
@@ -384,6 +400,10 @@ x         */
             long time = System.currentTimeMillis();
             while (getAngle() <= angle & (System.currentTimeMillis() < (time + 6000))) {
                 power = ((.75*2*0.684/5.063) * (-Math.pow((((getAngle())+2.9)/37.4),2) + 4.5*((getAngle()+2.9)/37.4)) + 0.3)/1.5;
+                if (Math.abs(angle) > 180){
+                    power = power * 1.25;
+                }
+
                 telemetry.addLine("power: " + power);
                 telemetry.addLine("angle: " + getAngle());
                 telemetry.update();
@@ -399,8 +419,11 @@ x         */
         }
         if(type.equals("clockwise")){
             long time = System.currentTimeMillis();
-            while (getAngle() >= -angle && (System.currentTimeMillis()<(time+6000))) {
+            while (getAngle() >= -angle && (System.currentTimeMillis()<(time+5000))) {
                 power = ((.75*2*0.684/5.063) * (-Math.pow((((-getAngle())+2.9)/37.4),2) + 4.5*((-getAngle()+2.9)/37.4)) + 0.159)/2.5;
+                if (Math.abs(angle) > 180){
+                    power = power * 1.25;
+                }
                 telemetry.addLine(""+power);
                 telemetry.addLine(""+getAngle());
                 telemetry.update();
@@ -652,11 +675,11 @@ x         */
         robot.wobbleMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.wobbleMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.wobbleMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            //settargetposition is inverse
-            //if setpower command for backward is -, then getpowers for both are both positive
+        //settargetposition is inverse
+        //if setpower command for backward is -, then getpowers for both are both positive
 
-            int startPos1 = robot.wobbleMotor.getCurrentPosition();
-            robot.wobbleMotor.setTargetPosition((int)(inches*COUNTS_PER_INCH));
+        int startPos1 = robot.wobbleMotor.getCurrentPosition();
+        robot.wobbleMotor.setTargetPosition((int)(inches*COUNTS_PER_INCH));
         teleUpdate(robot.wobbleMotor.getCurrentPosition() + ", " + robot.wobbleMotor.getTargetPosition(),"");
 
 //            Thread.sleep(3000);
