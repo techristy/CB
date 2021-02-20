@@ -22,7 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="" />
+    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="Final Code">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,18 +49,18 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Autonomous/TileRunner" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TeleOP" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\sini\Desktop\CB\Autonomous\TileRunner" />
       <recent name="C:\Users\sini\Desktop\CB\TeleOP" />
-      <recent name="C:\Users\sini\Desktop\CB\Autonomous\GoBuilda" />
       <recent name="C:\Users\sini\Desktop\CB\Autonomous" />
       <recent name="C:\Users\barat\StudioProjects\CB\Autonomous\Competition" />
+      <recent name="C:\Users\barat\StudioProjects\CB\Autonomous" />
+      <recent name="C:\Users\barat\StudioProjects\CB\TeleOP" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Joel\StudioProjects\CB\TeleOP" />
@@ -285,49 +287,7 @@
       <option name="project" value="LOCAL" />
       <updated>1613332732828</updated>
     </task>
-    <task id="LOCAL-00031" summary="gb right red">
-      <created>1613676519002</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1613676519002</updated>
-    </task>
-    <task id="LOCAL-00032" summary="gb right red">
-      <created>1613676624719</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1613676624719</updated>
-    </task>
-    <task id="LOCAL-00033" summary="gb right red">
-      <created>1613676918492</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1613676918492</updated>
-    </task>
-    <task id="LOCAL-00034" summary="gb right red">
-      <created>1613677084576</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1613677084576</updated>
-    </task>
-    <task id="LOCAL-00035" summary="gb right red">
-      <created>1613677095911</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1613677095911</updated>
-    </task>
-    <task id="LOCAL-00036" summary="gb right red">
-      <created>1613678089244</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1613678089244</updated>
-    </task>
-    <option name="localTasksCounter" value="37" />
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -349,44 +309,47 @@
     <MESSAGE value="New updates" />
     <MESSAGE value="Autonomous Updates 1/17/21" />
     <MESSAGE value="Autonomous Update 1/17/21" />
-    <MESSAGE value="gb right red" />
-    <option name="LAST_COMMIT_MESSAGE" value="gb right red" />
+    <option name="LAST_COMMIT_MESSAGE" value="Autonomous Update 1/17/21" />
   </component>
   <component name="WindowStateProjectService">
     <state x="696" y="17" key="#Project_Structure" timestamp="1608998139612">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="696" y="17" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1608998139612" />
-    <state x="270" y="0" key="CommitChangelistDialog2" timestamp="1613678087973">
+    <state x="270" y="0" key="CommitChangelistDialog2" timestamp="1613332732008">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="270" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1613678087973" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1612563003765">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="270" y="0" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1613332732008" />
+    <state x="549" y="175" key="FileChooserDialogImpl" timestamp="1613677298537">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1612563003765" />
-    <state x="147" y="65" key="MergeDialog" timestamp="1612197520368">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="549" y="175" key="FileChooserDialogImpl/0.0.1536.864@0.0.1536.864" timestamp="1613677298537" />
+    <state x="147" y="68" key="MergeDialog" timestamp="1613678369547">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="147" y="65" key="MergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1612197520368" />
+    <state x="147" y="68" key="MergeDialog/0.0.1536.864@0.0.1536.864" timestamp="1613678369547" />
     <state x="407" y="174" key="MultipleFileMergeDialog" timestamp="1610998916999">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1610998916999" />
-    <state x="466" y="146" key="Vcs.Push.Dialog.v2" timestamp="1613678102094">
+    <state x="466" y="146" key="Vcs.Push.Dialog.v2" timestamp="1613332751654">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="466" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1613678102094" />
+    <state x="466" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1613332751654" />
     <state x="607" y="265" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1612724997833" />
     <state x="759" y="356" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609084111089" />
-    <state x="665" y="425" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1612641120024">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="665" y="446" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613678561250">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="665" y="425" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1612641120024" />
+    <state x="665" y="446" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1613678561250" />
     <state x="831" y="537" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609085604751" />
-    <state x="524" y="201" key="git4idea.merge.GitPullDialog" timestamp="1612569772349">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="524" y="211" key="git4idea.merge.GitPullDialog" timestamp="1613678512480">
+      <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="524" y="201" key="git4idea.merge.GitPullDialog/0.0.1536.824@0.0.1536.824" timestamp="1612569772349" />
+    <state x="524" y="211" key="git4idea.merge.GitPullDialog/0.0.1536.864@0.0.1536.864" timestamp="1613678512480" />
   </component>
 </project>
