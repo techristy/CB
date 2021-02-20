@@ -22,20 +22,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="Final Code">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_12_2021_6_42_PM__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_12_2021_6_42_PM__Default_Changelist_.xml" afterDir="false" />
+    <list default="true" id="731eca7d-cc2b-4800-bf16-27aa18cd4fc8" name="Default Changelist" comment="Final Code Second Qualifier">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_12_2021_6_42_PM_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_12_2021_6_42_PM__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/ConceptTensorFlowObjectDetectionWebcam.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/ConceptVuforiaUltimateGoalNavigationWebcam.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/HardwarePushbot.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/LeftBlue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/LeftRed.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/LogisticFunction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/PIDController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/RightBlue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/RightRed.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/Tel_wobble.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Autonomous/Competition/teamcode.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,7 +296,21 @@
       <option name="project" value="LOCAL" />
       <updated>1613774719338</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Final Code Second Qualifier">
+      <created>1613787107811</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1613787107811</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Final Code Second Qualifier">
+      <created>1613787709461</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1613787709461</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -329,7 +333,8 @@
     <MESSAGE value="Autonomous Updates 1/17/21" />
     <MESSAGE value="Autonomous Update 1/17/21" />
     <MESSAGE value="Final Code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final Code" />
+    <MESSAGE value="Final Code Second Qualifier" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final Code Second Qualifier" />
   </component>
   <component name="WindowStateProjectService">
     <state x="696" y="17" key="#Project_Structure" timestamp="1608998139612">
@@ -354,12 +359,12 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="407" y="174" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1610998916999" />
-    <state x="559" y="186" key="Vcs.Push.Dialog.v2" timestamp="1613774750660">
+    <state x="559" y="186" key="Vcs.Push.Dialog.v2" timestamp="1613787171257">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="466" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1613332751654" />
     <state x="607" y="265" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1612724997833" />
-    <state x="559" y="186" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1613774750660" />
+    <state x="559" y="186" key="Vcs.Push.Dialog.v2/0.0.1536.864@0.0.1536.864" timestamp="1613787171257" />
     <state x="759" y="356" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609084111089" />
     <state x="665" y="446" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1613678561250">
       <screen x="0" y="0" width="1536" height="864" />
